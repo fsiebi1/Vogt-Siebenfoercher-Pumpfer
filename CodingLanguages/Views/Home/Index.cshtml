@@ -1,7 +1,51 @@
-﻿@{
+﻿@model List<CodingLanguages.Models.Languages>
+
+@{
     ViewData["Title"] = "Home Page";
+    <style>
+       
+    </style>
 }
 
-<p>
-    Hello world!
-</p>
+@if ((Model != null) && (Model.Count >= 1))
+{
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    Sprache
+                </td>
+                <td>
+                    Objektorientiert
+                </td>
+                <td>
+                    Vorteile
+                </td>
+                <td>
+                    Nachteile
+                </td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (Languages s in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="/@s.languageName/Index">@s.languageName</a>
+                    </td>
+                    <td>
+                        @s.info
+                    </td>
+                    <td>
+                        @s.adv
+                    </td>
+                    <td>
+                        @s.disadv
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
