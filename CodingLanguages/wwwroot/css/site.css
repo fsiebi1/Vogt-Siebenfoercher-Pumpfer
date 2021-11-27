@@ -28,27 +28,27 @@ tbody {
     font-size: 20px;
     color: #c76e06;
 }
-    tbody td {
-        border-top: 2px solid #024d03;
-        border-right: 2px solid #024d03;
-    }
 
-    thead td {
-       padding-left: 10px;
-       padding-right: 50px;
-    }
-
-    tbody td {
-        text-align: center;
-    }
-.dropdown:hover .dropdown-menu {
-    display: block;
+header {
+    position: fixed;
 }
 
-body {
-    background: url("https://ewdvtw8.imgix.net/news/wp-content/uploads/2017/10/matrix-code-film.jpg?auto=format%2Ccompress&fit=crop&h=348&ixlib=php-3.3.1&q=75&w=620%22");
-    background-size: cover;
-    background-repeat: no-repeat;
+tbody td {
+    border-top: 2px solid #024d03;
+    border-right: 2px solid #024d03;
+}
+
+thead td {
+    padding-left: 10px;
+    padding-right: 50px;
+}
+
+tbody td {
+    text-align: center;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
 footer {
