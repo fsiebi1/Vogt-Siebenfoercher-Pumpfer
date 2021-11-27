@@ -17,8 +17,9 @@ namespace CodingLanguages.Controllers {
         {
             return new List<Languages>()
             {
-                new Languages() { languageName = "Java", info = "is halt java", adv = "x", disadv = "y"},
-                new Languages() { languageName = "NET", info = "besser als java", adv = "x", disadv = "y"}
+                new Languages() { languageName = "Java", info = "Ja", adv = "plattormunabhängig, starker Community-Support", disadv = "erheblich unperformanter als andere Programmiersprachen"},
+                new Languages() { languageName = "NET", info = "Ja", adv = "plattformübergreifend, viele Bibliotheken bereitgestellt", disadv = "Lücke zwischen Release und Stabilität"},
+                new Languages() { languageName = "Python", info = "Ja", adv = "benutzerfreundlich, unkompliziert und schnell", disadv = "Designeinschränkungen"}
             };
         }
         public IActionResult Impressum() {
