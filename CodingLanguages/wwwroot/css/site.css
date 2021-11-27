@@ -1,1 +1,29 @@
-﻿
+﻿.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+body {
+    background: url("https://ewdvtw8.imgix.net/news/wp-content/uploads/2017/10/matrix-code-film.jpg?auto=format%2Ccompress&fit=crop&h=348&ixlib=php-3.3.1&q=75&w=620%22");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.mine {
+    flex-direction:row;
+    width: 45%;
+}
+
+.mine1 {
+    flex-direction: row;
+    width: 10%;
+}
+
+.myNav a {
+    padding: 50px;    
+}

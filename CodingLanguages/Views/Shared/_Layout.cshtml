@@ -4,15 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CodingLanguages</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" /> 
+
 </head>
 <body>
 
-    @RenderBody()
+    <header>
+        <partial name="Header" />
+    </header>
+
+    <content>
+        @RenderBody()
+    </content>
+
+    <footer>
+        <nav class="navbar navbar-inverse navbar-bottom">
+            <div class="container-fluid mine"></div>"
+            <div class="container-fluid mine1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/home/AboutUs">About us</a></li>
+                    <li><a href="/home/Impressum">Impressum</a></li>
+                    <li><a href="/user/Newsletter">Newsletter</a></li>
+                </ul>
+            </div>
+            <div class="container-fluid mine"></div>"
+        </nav>
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
