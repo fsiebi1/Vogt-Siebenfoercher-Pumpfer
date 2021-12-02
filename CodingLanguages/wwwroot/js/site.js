@@ -1,5 +1,6 @@
 ﻿
 function activeNav(x) {
+
     if (document.getElementById("Home").classList.contains('active')) {
         document.getElementById("Home").classList.remove('active');
     }
