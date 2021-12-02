@@ -101,6 +101,10 @@ footer {
     width: 45%;
 }
 
+.link {
+    margin: 120px;
+}
+
 .mine1 {
     flex-direction: row;
     width: 10%;

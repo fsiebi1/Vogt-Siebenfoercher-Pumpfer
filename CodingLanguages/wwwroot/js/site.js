@@ -1,4 +1,4 @@
-﻿
+﻿/*
 function activeNav(x) {
 
     if (document.getElementById("Home").classList.contains('active')) {
@@ -27,3 +27,4 @@ function activeNav(x) {
         document.getElementById("Python").classList.add('active');
     }
 }
+*/
