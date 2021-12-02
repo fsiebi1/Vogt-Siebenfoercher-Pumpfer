@@ -9,44 +9,47 @@
             <a class="navbar-brand" href="/home/Index">Coding Languages</a>
         </div>
         <ul class="inlineUl nav navbar-nav">
-            <li class="active"><a href="/home/Index">Home</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Java
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/java/Index">Infos</a></li>
-                    <li><a href="/java/Index">Infos</a></li>
-                    <li><a href="/java/Index">Infos</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    .NET
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/net/Index">Infos</a></li>
-                    <li><a href="/net/Index">Infos</a></li>
-                    <li><a href="/net/Index">Infos</a></li>
-                </ul>
-            </li>   
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Python
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/python/Index">Infos</a></li>
-                    <li><a href="/python/Index">Infos</a></li>
-                    <li><a href="/python/Index">Infos</a></li>
-                </ul>
-            </li>
+            <li id="Home" class="active"><a href="/home/Index" onclick="activeNav(0);">Home</a></li>
+            <li id="Java"><a href="/java/Index" onclick="activeNav(1);">Java</a></li>
+            <li id="net"><a href="/net/Index" onclick="activeNav(2);">.net</a></li>
+            <li id="Pyhton"><a href="/python/Index" onclick="activeNav(3);">Python</a></li>
+            @*<li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Java
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/java/Index">Infos</a></li>
+                <li><a href="/java/Index">Infos</a></li>
+                <li><a href="/java/Index">Infos</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                .NET
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/net/Index">Infos</a></li>
+                <li><a href="/net/Index">Infos</a></li>
+                <li><a href="/net/Index">Infos</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Python
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/python/Index">Infos</a></li>
+                <li><a href="/python/Index">Infos</a></li>
+                <li><a href="/python/Index">Infos</a></li>
+            </ul>
+        </li>*@
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="/user/Register"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+            <li><a href="/user/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
         <button class="btn btn-danger navbar-right navbar-btn">DE</button>
     </div>
