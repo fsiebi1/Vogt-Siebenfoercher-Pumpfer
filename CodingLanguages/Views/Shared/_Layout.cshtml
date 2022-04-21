@@ -6,9 +6,11 @@
     <title>@ViewData["Title"] - CodingLanguages</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/java.css" />
-    <link rel="stylesheet" href="~/css/net.css" />
-    <link rel="stylesheet" href="~/css/python.css" />
+    <link rel="stylesheet" href="~/css/codelayout.css" />
+    <link rel="stylesheet" href="~/css/animations.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.8.10/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.8.10/brython_stdlib.js"></script>
     <style>
         .main {
             margin-left: 140px;
@@ -17,12 +19,88 @@
         }
     </style>
 </head>
-<body class="Site">
-
+<body class="Site" onclick="">
     <header>
         <partial name="Header" />
     </header>
 
+    <!--<script>
+        // Using ES6 feature.
+        let animateSwitching = () => {
+            var id = null;
+            var elem = document.getElementById("anim");
+            var pos = 0;
+            clearInterval(id);
+            id = setInterval(frame, 10);
+            function frame() {
+                if (pos >= screen.width) {
+                    clearInterval(id);
+
+                    window.location.href = "/java/Index";
+                } else {
+                    pos += screen.width/100;
+                    elem.style.width = pos + 'px';
+                }
+            }
+
+            let tID = setTimeout(function () {
+                pos = 0;
+                elem.style.width = screen.width + 'px';
+                id = setInterval(frameAfter, 10);
+                function frameAfter() {
+                    if (pos >= screen.width) {
+                        elem.style.width = 0;
+                        elem.style.left = 0;
+                        clearInterval(id);
+                    } else {
+                        pos += (screen.width / 100);
+                        elem.style.left = pos + 'px';
+                        elem.style.width = screen.width - pos + 'px';
+                    }
+                }
+            }, 2000);
+        }
+    </script>
+
+
+    <script>
+        // Using ES6 feature.
+        let animateSwitching2 = () => {
+            var id = null;
+            var elem = document.getElementById("anim");
+            var pos = 0;
+            elem.style.width = screen.width + 'px';
+            clearInterval(id);
+            id = setInterval(frame, 10);
+            function frame() {
+                if (pos >= screen.width) {
+                    clearInterval(id);
+                } else {
+                    pos += (screen.width / 100);
+                    elem.style.left = pos + 'px';
+                    elem.style.width = screen.width - pos + 'px';
+                }
+            }
+
+            let tID = setTimeout(function () {
+                pos = 0;
+                elem.style.width = screen.width + 'px';
+                id = setInterval(frameAfter, 10);
+                function frameAfter() {
+                    if (pos >= screen.width) {
+                        window.location.clearInterval(id);
+                        window.clearTimeout();
+                    } else {
+                        pos += (screen.width/100);
+                        elem.style.left = pos + 'px';
+                        elem.style.width = screen.width - pos + 'px';
+                    }
+                }
+            }, 2000);
+        }
+    </script>-->
+
+    <div id="anim" class="newScreen"></div>
     <main class="Site-content">
         <br />
         <br />
@@ -35,9 +113,10 @@
         <br />
     </main>
 
+
     <footer>
         <nav class="navbar navbar-inverse navbar-bottom">
-            <div class="container-fluid mine"></div>"
+            <div class="container-fluid mine"></div>
             <div class="container-fluid mine1">
                 <ul class="nav navbar-nav">
                     <li><a href="/home/AboutUs">About us</a></li>
@@ -45,7 +124,7 @@
                     <li><a href="/user/Newsletter">Newsletter</a></li>
                 </ul>
             </div>
-            <div class="container-fluid mine"></div>"
+            <div class="container-fluid mine"></div>
         </nav>
     </footer>
 
