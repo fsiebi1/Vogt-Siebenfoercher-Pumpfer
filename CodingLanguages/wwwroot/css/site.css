@@ -7,14 +7,15 @@ header{
     position: fixed;
 }
 
-.Site {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+main {
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
 }
 
-.Site-content {
-    flex: 1;
+.main {
+    font-size: 20px;
 }
 
 body {
@@ -22,7 +23,6 @@ body {
     background-size:cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    margin: 0;
 }
 h1 {
     font-size: 35px;
@@ -32,7 +32,7 @@ h1 {
     color: crimson;
 }
 
-p {
+.paragrath {
     font-size: 20px;
     font-weight: normal;
     text-align: left;
@@ -92,8 +92,10 @@ tbody td {
 
 footer {
     height: auto;
+    width: 100%;
     text-align: center;
     bottom: 0;
+    position: absolute;
 }
 
 .mine {
@@ -112,4 +114,8 @@ footer {
 
 .myNav a {
     padding: 50px;    
+}
+
+.redBorder {
+    border: 2px solid red;
 }
