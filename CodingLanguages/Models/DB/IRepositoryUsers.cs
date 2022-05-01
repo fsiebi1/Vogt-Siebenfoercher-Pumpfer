@@ -17,7 +17,7 @@ namespace CodingLanguages.Models.DB {
         public Task<bool> IsUniqueUsernameAsync(string username);
         public Task<List<User>> GetAllUsersAsync();
 
-        public Task<bool> LoginAsync(string username, string password);
+        public Task<User> LoginAsync(User u);
 
     }
 }

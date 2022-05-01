@@ -1,4 +1,5 @@
 ﻿using CodingLanguages.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,6 +12,7 @@ namespace CodingLanguages.Controllers {
     public class HomeController : Controller {
 
         public IActionResult Index() {
+
             return View(LoadLanguages());
         }
         private List<Languages> LoadLanguages()

@@ -1,6 +1,7 @@
 ﻿using CodingLanguages.Models;
 using CodingLanguages.Models.DB;
 using CodingLanguages.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,8 @@ namespace CodingLanguages.Controllers {
                     await _rep.ConnectAsync();
 
                     if (await _rep.InsertAsync(userDataFromForm.User)) {
-                        return View("_Message", new Message("Registrierung", "Sie haben sich erfolgreich registriert"));
+                        HttpContext.Session.SetString("name", userDataFromForm.User.Username);
+                        return View("_Message", new Message("Registrierung", "Hallo " + userDataFromForm.User.Username + "!\nSie haben sich erfolgreich registriert!"));
                     }
                     else {
                         return View("_Message", new Message("Registrierung", "Registrierung fehlgeschlagen", "Bitte probieren Sie es später erneut"));
@@ -62,8 +64,57 @@ namespace CodingLanguages.Controllers {
             return View(userDataFromForm);
         }
 
+        [HttpGet]
         public IActionResult Login() {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(User userDataFromForm) {
+
+            if (userDataFromForm == null)
+            {
+                return RedirectToAction("Registration");
+            }
+
+            ValidateLoginData(userDataFromForm);
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _rep.ConnectAsync();
+                    User wholeUser = await _rep.LoginAsync(userDataFromForm);
+
+                    if (wholeUser != null)
+                    {
+                        HttpContext.Session.SetString("name", wholeUser.Username);
+                        HttpContext.Session.SetInt32("admin", wholeUser.Admin);
+                        return View("_Message", new Message("Login", "Hallo " + wholeUser.Username + "! Sie haben sich erfolgreich eingeloggt!"));
+                    }
+                    else
+                    {
+                        return View("_Message", new Message("Login", "Login fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                    }
+
+                }
+                catch (DbException)
+                {          // basisklasse datenbank-Exceptions
+                    return View("_Message", new Message("Login", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+
+                }
+                finally
+                {
+                    await _rep.DisconnectAsync();
+                }
+            }
+            return View(userDataFromForm);
+        }
+
+        public IActionResult Logout() {
+            HttpContext.Session.SetString("name", "");
+            HttpContext.Session.SetInt32("admin", 0);
+            return View("_Message", new Message("Logout", "Sie haben sich erfolgreich ausgeloggt!"));
         }
         public IActionResult Newsletter() {
             return View();
@@ -87,6 +138,9 @@ namespace CodingLanguages.Controllers {
 
             if (u.Username == null || u.Username.Trim().Length < 4 || u.Username.Trim().Length > 100) {
                 ModelState.AddModelError("User.Username", "Der Benutzername muss mind. 4  und max. 100 Zeichen lang sein.");
+            } else if(u.Username.Contains('@'))
+            {
+                ModelState.AddModelError("User.Username", "Der Benutzername darf kein @ enthalten.");
             }
 
             if (u.Firstname == null || u.Firstname.Trim().Length < 4 || u.Firstname.Trim().Length > 100) {
@@ -107,9 +161,21 @@ namespace CodingLanguages.Controllers {
                 ModelState.AddModelError("User.Birthdate", "User müssen mindestens 12 Jahre alt sein.");
             }
 
-            if (u.Email == null || !u.Email.Contains('@') || u.Email.Trim().Length > 100) {
-                ModelState.AddModelError("User.Email", "Es muss eine gültige Email-Addresse eingegeben werden, welche kürzer als 100 Zeichen ist.");
+            if (u.Email == null || !u.Email.Contains('@') || u.Email.Trim().Length < 8 || u.Email.Trim().Length > 100) {
+                ModelState.AddModelError("User.Email", "Es muss eine gültige Email-Addresse eingegeben werden, welche länger als 7 und kürzer als 100 Zeichen ist.");
             }
+        }
+
+        private void ValidateLoginData(User u) {
+
+            if (u == null)
+                return;
+
+            if (u.Username == null || u.Username.Trim().Length < 4 || u.Username.Trim().Length > 100)
+                ModelState.AddModelError("Username", "Benutzername oder Email muss min. 4 und max. 100 Zeichen enthalten.");
+
+            if (u.Password == null || u.Password.Length < 8)
+                ModelState.AddModelError("Password", "Das Passwort muss mind. 8 Zeichen lang sein.");
         }
 
         public async Task<bool> IsUniqueEmail(string email) {

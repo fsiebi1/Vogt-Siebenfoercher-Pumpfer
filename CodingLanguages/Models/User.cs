@@ -23,6 +23,7 @@ namespace CodingLanguages.Models {
         public string Email { get; set; }
         public string Country { get; set; }
         public Gender Gender { get; set; }
+        public int Admin { get; set; }
 
         // ctor's + ToString()
     }

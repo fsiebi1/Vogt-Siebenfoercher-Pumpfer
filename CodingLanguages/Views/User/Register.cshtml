@@ -1,6 +1,4 @@
-﻿
-
-@model CodingLanguages.Models.ViewModels.RegistrationViewModel
+﻿@model CodingLanguages.Models.ViewModels.RegistrationViewModel
 
 @{
     ViewData["Title"] = "Register";
@@ -12,6 +10,7 @@
 <div class="form">
     <form asp-controller="user" asp-action="register" method="post">
         <input type="hidden" asp-for="User.UserID" />
+        <input type="hidden" asp-for="User.Admin" />
 
         <p>
             <label asp-for="User.Username">Username</label>

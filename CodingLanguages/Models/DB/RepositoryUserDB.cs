@@ -32,7 +32,7 @@ namespace CodingLanguages.Models.DB {
 
                 DbCommand cmdInsert = this._conn.CreateCommand();
 
-                cmdInsert.CommandText = "insert into user values(null, @username, @firstname, @lastname, sha2(@pwd, 512), @bd, @email, @country, @gender);";
+                cmdInsert.CommandText = "insert into user values(null, @username, @firstname, @lastname, sha2(@pwd, 512), @bd, @email, @country, @gender, 0);";
 
                 DbParameter paramUN = cmdInsert.CreateParameter();
                 paramUN.ParameterName = "username";
@@ -97,10 +97,12 @@ namespace CodingLanguages.Models.DB {
             throw new NotImplementedException();
         }
 
-        public async Task<User> GetUserAsync(int userId) {
+        public async Task<User> GetUserAsync(int userId)
+        {
             User user = null;
 
-            if (this._conn?.State == ConnectionState.Open) {
+            if (this._conn?.State == ConnectionState.Open)
+            {
 
                 DbCommand cmdOneUser = this._conn.CreateCommand();
                 cmdOneUser.CommandText = "select * from user where user_id = @user_id";
@@ -112,11 +114,14 @@ namespace CodingLanguages.Models.DB {
 
                 cmdOneUser.Parameters.Add(paramUserId);
 
-                using (DbDataReader reader = await cmdOneUser.ExecuteReaderAsync()) {
+                using (DbDataReader reader = await cmdOneUser.ExecuteReaderAsync())
+                {
 
-                    if (reader.Read()) {
+                    if (reader.Read())
+                    {
 
-                        user = new User() {
+                        user = new User()
+                        {
                             UserID = Convert.ToInt32(reader["user_id"]),
                             Username = Convert.ToString(reader["username"]),
                             Firstname = Convert.ToString(reader["firstname"]),
@@ -125,7 +130,51 @@ namespace CodingLanguages.Models.DB {
                             Birthdate = Convert.ToDateTime(reader["birthdate"]),
                             Email = Convert.ToString(reader["email"]),
                             Country = Convert.ToString(reader["country"]),
-                            Gender = (Gender)Convert.ToInt32(reader["gender"])
+                            Gender = (Gender)Convert.ToInt32(reader["gender"]),
+                            Admin = Convert.ToInt32(reader["admin"])
+                        };
+                    }
+                }
+            }
+
+            return user;
+        }
+
+        public async Task<User> GetUserAsync(string username)
+        {
+            User user = null;
+
+            if (this._conn?.State == ConnectionState.Open)
+            {
+
+                DbCommand cmdOneUser = this._conn.CreateCommand();
+                cmdOneUser.CommandText = "select * from user where username = @username";
+
+                DbParameter paramUserId = cmdOneUser.CreateParameter();
+                paramUserId.ParameterName = "username";
+                paramUserId.DbType = DbType.String;
+                paramUserId.Value = username;
+
+                cmdOneUser.Parameters.Add(paramUserId);
+
+                using (DbDataReader reader = await cmdOneUser.ExecuteReaderAsync())
+                {
+
+                    if (reader.Read())
+                    {
+
+                        user = new User()
+                        {
+                            UserID = Convert.ToInt32(reader["user_id"]),
+                            Username = Convert.ToString(reader["username"]),
+                            Firstname = Convert.ToString(reader["firstname"]),
+                            Lastname = Convert.ToString(reader["lastname"]),
+                            Password = Convert.ToString(reader["password"]),
+                            Birthdate = Convert.ToDateTime(reader["birthdate"]),
+                            Email = Convert.ToString(reader["email"]),
+                            Country = Convert.ToString(reader["country"]),
+                            Gender = (Gender)Convert.ToInt32(reader["gender"]),
+                            Admin = Convert.ToInt32(reader["admin"])
                         };
                     }
                 }
@@ -192,8 +241,59 @@ namespace CodingLanguages.Models.DB {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> LoginAsync(string username, string password) {
-            throw new NotImplementedException();
+        public async Task<User> LoginAsync(User u) {
+            User user = null;
+
+            if (this._conn?.State == ConnectionState.Open)
+            {
+
+                DbCommand cmdOneUser = this._conn.CreateCommand();
+                if(u.Username.Contains('@'))
+                {
+                    cmdOneUser.CommandText = "select user_id, username, admin from user where email = @email and password = sha2(@pwd, 512);";
+
+                    DbParameter paramEm = cmdOneUser.CreateParameter();
+                    paramEm.ParameterName = "email";
+                    paramEm.DbType = DbType.String;
+                    paramEm.Value = u.Username;
+
+                    cmdOneUser.Parameters.Add(paramEm);
+
+                } else
+                {
+                    cmdOneUser.CommandText = "select user_id, username, admin from user where username = @username and password = sha2(@pwd, 512);";
+
+                    DbParameter paramUN = cmdOneUser.CreateParameter();
+                    paramUN.ParameterName = "username";
+                    paramUN.DbType = DbType.String;
+                    paramUN.Value = u.Username;
+
+                    cmdOneUser.Parameters.Add(paramUN);
+                }
+
+                DbParameter paramPwd = cmdOneUser.CreateParameter();
+                paramPwd.ParameterName = "pwd";
+                paramPwd.DbType = DbType.String;
+                paramPwd.Value = u.Password;
+
+                cmdOneUser.Parameters.Add(paramPwd);
+
+                using (DbDataReader reader = await cmdOneUser.ExecuteReaderAsync())
+                {
+
+                    if (reader.Read())
+                    {
+                        user = new User()
+                        {
+                            UserID = Convert.ToInt32(reader["user_id"]),
+                            Username = Convert.ToString(reader["username"]),
+                            Admin = Convert.ToInt32(reader["admin"])
+                        };
+                    }
+                }
+            }
+
+            return user;
         }
     }
 }

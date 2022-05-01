@@ -1,7 +1,28 @@
-﻿
+﻿@model CodingLanguages.Models.User
+
 @{
     ViewData["Title"] = "Login";
 }
 
 <h1>Login</h1>
+<br />
 
+<div class="form">
+    <form asp-controller="user" asp-action="login" method="post">
+        <p>
+            <label asp-for="Username">Username or Email</label>
+            <input type="text" asp-for="Username" placeholder="Please enter your username or email">
+            <span asp-validation-for="Username"></span>
+        </p>
+
+        <p>
+            <label asp-for="Password">Password</label>
+            <input type="password" asp-for="Password" placeholder="Please enter your password">
+            <span asp-validation-for="Password"></span>
+        </p>
+
+        <p>
+            <input id="btnSubmit" type="submit" value="Login">
+        </p>
+    </form>
+</div>
