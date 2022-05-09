@@ -50,17 +50,14 @@
                 </li>*@
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            @if (@httpContextAccessor.HttpContext.Session.GetString("name") == null || @httpContextAccessor.HttpContext.Session.GetString("name") == "")
-            {
+            @if (@httpContextAccessor.HttpContext.Session.GetString("name") == null || @httpContextAccessor.HttpContext.Session.GetString("name") == "") {
                 <li><a href="/user/Register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
                 <li><a href="/user/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             }
-            else
-            {
-                <li><a href="/user/Register"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
-                if (@httpContextAccessor.HttpContext.Session.GetInt32("admin") == 1)
-                {
-                    <li><a href="/user/Register"><span class="glyphicon"></span>Admin Area</a></li>
+            else {
+                <li><a href="/user/Profil"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+                if (@httpContextAccessor.HttpContext.Session.GetInt32("admin") == 1) {
+                    <li><a href="/user/AdminArea"><span class="glyphicon"></span>Admin Area</a></li>
                 }
                 <li><a href="/user/Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             }

@@ -9,7 +9,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
-// TODO check if username of email already taken
+// profil - view und admin - view
 
 namespace CodingLanguages.Controllers {
     public class UserController : Controller {
@@ -116,6 +116,15 @@ namespace CodingLanguages.Controllers {
             HttpContext.Session.SetInt32("admin", 0);
             return View("_Message", new Message("Logout", "Sie haben sich erfolgreich ausgeloggt!"));
         }
+ 
+        public IActionResult Profil() {
+            return View();
+        }
+
+        public IActionResult AdminArea() {
+            return View();
+        }
+
         public IActionResult Newsletter() {
             return View();
         }

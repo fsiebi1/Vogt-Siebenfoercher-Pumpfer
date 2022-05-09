@@ -2,15 +2,15 @@
 
 <h3>@Model.Header</h3>
 
-<p>
-    <b>Meldung</b>
+<p class="paragrath">
+    <b>Meldung:</b>
     @Model.MessageText
 </p>
 
 @if (Model.Solution != null && Model.Solution.Trim().Length >= 1)
 {
-    <p>
-        <b>Lösung</b>
+    <p class="paragrath">
+        <b>Lösung:</b>
         @Model.Solution
     </p>
 }
