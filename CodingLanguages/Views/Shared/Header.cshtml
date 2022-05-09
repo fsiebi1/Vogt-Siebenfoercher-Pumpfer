@@ -5,14 +5,14 @@
     ViewData["Title"] = "Header";
 }
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top primary-header">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/home/Index">Coding Languages</a>
+            <a class="navbar-brand">Coding Languages</a>
         </div>
         <ul class="inlineUl nav navbar-nav">
-            <li id="Home" class="active"><a href="/home/Index" onclick="activeNav(0);">Home</a></li>
-            <li id="Java"><a href="/java/Index" onclick="activeNav(1);">Java</a></li>
+            <li id="Home" class="active"><a href="/home/Index" onclick="animateSwitching2()">Home</a></li>
+            <li id="Java"><a href="/java/Index" onload="animateSwitching2()">Java</a></li>
             <li id="net"><a href="/net/Index" onclick="activeNav(2);">.net</a></li>
             <li id="Pyhton"><a href="/python/Index" onclick="activeNav(3);">Python</a></li>
             @*<li class="dropdown">

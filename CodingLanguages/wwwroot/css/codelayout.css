@@ -1,0 +1,134 @@
+﻿.codebox {
+    background-color: #121212;
+    width: 80%;
+    border: 3px solid green;
+    padding: 0px;
+    padding-left: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: 0px;
+    margin-bottom: 10px;
+    display: flex;
+    line-break: strict;
+}
+
+.container-fluid {
+    z-index: 1000000 !important;
+}
+#playButton {
+    display: flex;
+    position: absolute;
+    width: auto;
+    height: auto;
+}
+.circle {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    margin: 150px 0px;
+    padding: 0;
+    background-color: #393636;
+    border-radius: 50%;
+    display: flex;
+    z-index: 10
+}
+
+.arrowRightOuter {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    margin: 164px 20px;
+    padding: 0;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-left: 24px solid white;
+    display: flex;
+    z-index: 10
+}
+
+.arrowRightInner {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    margin: 168px 23px;
+    padding: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 18px solid #393636;
+    display: flex;
+    z-index: 10
+}
+
+.codebox_empty {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+pre{
+    border: none;
+    background: none;
+}
+
+code{
+    font-size: 20px;
+    align-content: center;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.keyword {
+    background-color: #121212;
+    color: #6DB2EA;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    float: left;
+}
+
+
+.text {
+    background-color: #121212;
+    color: #DC98D9;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    float: left;
+}
+
+.plain {
+    background-color: #121212;
+    color: #ebdddd;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    float: left;
+}
+
+.comments {
+    background-color: #121212;
+    color: #3AAD35;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    float: left;
+}
+
+.method {
+    background-color: #121212;
+    color: #F50658;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    float: left;
+}
+
+.param {
+    background-color: #121212;
+    color: #089A01;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    float: left;
+}

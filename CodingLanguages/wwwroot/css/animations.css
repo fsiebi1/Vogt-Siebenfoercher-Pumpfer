@@ -1,0 +1,7 @@
+﻿.newScreen {
+    position: absolute;
+    margin: 0px 0px;
+    width: 0vw;
+    height: 100vh;
+    background-color: #222222;
+}
