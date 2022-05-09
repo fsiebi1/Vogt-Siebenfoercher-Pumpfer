@@ -16,7 +16,10 @@
     z-index: 1000000 !important;
 }
 #playButton {
-
+    display: flex;
+    position: absolute;
+    width: auto;
+    height: auto;
 }
 .circle {
     position: absolute;

@@ -289,16 +289,25 @@ for i in range(n):
     print("%d" % arr[i])</textarea>
     <button id="runSnippet" onclick="brython()">Run Code</button>
     <button id="copyCode" onclick="copyToClickBoard()">Copy Code</button>
+
+
+
+    <!--<a href="~/downloads/test.txt" download="hi">
+        <button type="button">Download Now!</button>
+    </a>-->
+
+
+
     <script>
         function copyToClickBoard() {
             var content = document.getElementById('copy').innerHTML;
-
+.
             navigator.clipboard.writeText(content)
                 .then(() => {
-                    console.log("Text copied to clipboard...")
+                    alert("Copied code to Clipboard!");
                 })
                 .catch(err => {
-                    console.log('Something went wrong', err);
+                    alert("Error 409 | Something went wrong!");
                 })
 
         }
