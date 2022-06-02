@@ -55,7 +55,7 @@
 
     </table>
 
-    <div id="playButton">
+    <div id="playButton" onclick="brython()">
         <div class="circle"></div>
         <div class="arrowRightOuter"></div>
         <div class="arrowRightInner"></div>
@@ -290,18 +290,14 @@ for i in range(n):
     <button id="runSnippet" onclick="brython()">Run Code</button>
     <button id="copyCode" onclick="copyToClickBoard()">Copy Code</button>
 
-
-
     <!--<a href="~/downloads/test.txt" download="hi">
         <button type="button">Download Now!</button>
     </a>-->
 
-
-
     <script>
         function copyToClickBoard() {
             var content = document.getElementById('copy').innerHTML;
-.
+
             navigator.clipboard.writeText(content)
                 .then(() => {
                     alert("Copied code to Clipboard!");
