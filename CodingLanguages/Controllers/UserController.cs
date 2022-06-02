@@ -117,11 +117,46 @@ namespace CodingLanguages.Controllers {
             return View("_Message", new Message("Logout", "Sie haben sich erfolgreich ausgeloggt!"));
         }
  
-        public IActionResult Profil() {
+        public async Task<IActionResult> Profil() {
+            try {
+                await _rep.ConnectAsync();
+                User user = await _rep.GetUserAsync(HttpContext.Session.GetString("name"));
+
+                if (user != null) {
+                    return View(user);
+                }
+                else {
+                    return View("_Message", new Message("Profil", "Daten konnten nicht vom Server geladen werden", "Bitte probieren Sie es später erneut"));
+                }
+
+            }
+            catch (DbException) {          // basisklasse datenbank-Exceptions
+                return View("_Message", new Message("Login", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+
+            }
+            finally {
+                await _rep.DisconnectAsync();
+            }
+        }
+
+        public async Task<IActionResult> Update() {
             return View();
         }
 
+        public async Task<IActionResult> ChangePassword() {
+            return View();
+        }
+
+        public async Task<IActionResult> Delete() {
+            return await Delete(HttpContext.Session.GetString("name"));
+        }
+
+        public async Task<IActionResult> Delete(string username) {
+            return View("_Message", new Message("Delete", "User '" + username + "' wurde erfolgreich gelöscht!"));
+        }
+
         public IActionResult AdminArea() {
+            // Abprüfen, ob in der Session wirklich drin steht, dass der da was tun bzw sehen darf 
             return View();
         }
 

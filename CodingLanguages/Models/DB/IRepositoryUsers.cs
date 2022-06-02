@@ -13,6 +13,7 @@ namespace CodingLanguages.Models.DB {
         public Task<bool> UpdateAsync(User newUserData);
         public Task<bool> DeleteAsync(int userId);
         public Task<User> GetUserAsync(int userId);
+        public Task<User> GetUserAsync(string username);
         public Task<bool> IsUniqueEmailAsync(string email);
         public Task<bool> IsUniqueUsernameAsync(string username);
         public Task<List<User>> GetAllUsersAsync();

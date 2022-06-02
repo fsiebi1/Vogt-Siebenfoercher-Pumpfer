@@ -1,3 +1,10 @@
+/*
+bilingual
+admin area (alle anzeigen, einzellne ändern, admin machen)
+profil (anzeigen, change, change password)
+email senden (newsletter anmeldung, email verifizieren)
+ */
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

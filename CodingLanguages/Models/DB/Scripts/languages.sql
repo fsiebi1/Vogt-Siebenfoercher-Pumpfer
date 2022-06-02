@@ -17,6 +17,6 @@ create table User(
 	constraint user_id_PK primary key(user_id)
 );
 
-insert into user values(null, "hallo", "franz", "fritz", sha2("12345678", 512), "05.03.2004", "hallo@raeucher.info", "Austria", 1, 1);
+insert into user values(null, "hallo", "franz", "fritz", sha2("12345678", 512), "2004-05-03", "hallo@raeucher.info", "Austria", 1, 1);
 
--- admin bool und email bestaetigt noch in die datenbank einfuegen
+-- email bestaetigen + newsletter einfuegen
