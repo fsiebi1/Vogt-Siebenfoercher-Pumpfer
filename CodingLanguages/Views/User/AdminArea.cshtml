@@ -1,6 +1,54 @@
-﻿
+﻿@model List<CodingLanguages.Models.User>
 @{
-    ViewData["Title"] = "AdminArea";
+    ViewData["Title"] = "Admin Area";
 }
 
+<link rel="stylesheet" href="~/css/table2.css" />
+
 <h1>AdminArea</h1>
+
+<div class="form">
+    <table>
+        <thead>
+            <tr>
+                <td colspan="6">Liste aller Benutzer</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Username</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>E-Mail</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            @foreach (User u in Model)
+            {
+                <tr>
+                    <td>@u.Username</td>
+                    <td>@u.Firstname</td>
+                    <td>@u.Lastname</td>
+                    <td>@u.Email</td>
+                    <td>
+                        <form action="/user/updateAdmin/@u.Username">
+                            <input type="submit" value="ändern" />
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/user/deleteAdmin/@u.Username">
+                            <input style="background-color: red;" type="submit" value="löschen" />
+                        </form>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">Benutzer bearbeiten</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

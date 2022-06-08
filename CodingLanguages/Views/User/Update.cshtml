@@ -4,4 +4,15 @@
 }
 
 <h1>Update</h1>
+<br />
 
+<div class="form">
+    <form asp-controller="user" asp-action="update" method="post">
+
+        <partial name="UserForm" />
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/update.js" asp-append-version="true"></script>
+}

@@ -12,7 +12,8 @@ namespace CodingLanguages.Controllers {
     public class HomeController : Controller {
 
         public IActionResult Index() {
-
+            HttpContext.Session.SetString("name", "hallo");
+            HttpContext.Session.SetInt32("admin", 1);
             return View(LoadLanguages());
         }
         private List<Languages> LoadLanguages()

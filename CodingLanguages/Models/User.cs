@@ -24,6 +24,9 @@ namespace CodingLanguages.Models {
         public string Country { get; set; }
         public Gender Gender { get; set; }
         public int Admin { get; set; }
+        public string UsernameOld { get; set; }
+        public string EmailOld { get; set; }
+        public string PasswordOld { get; set; }
 
         // ctor's + ToString()
     }

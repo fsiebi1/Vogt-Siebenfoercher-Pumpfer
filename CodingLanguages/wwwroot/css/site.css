@@ -56,48 +56,8 @@ h3 {
 }
 
 
-tfoot {
-    font-size: 0.8em;
-    text-align: right;
-}
-
-table{
-    text-align: center;
-    max-width:80%;
-}
-
-thead {
-    font-size: 25px;
-    font-weight: bold;
-    text-align: left;
-    color: crimson;
-}
-
-thead td {
-    border-right: 2px solid #024d03;
-}
-
-tbody {
-    font-size: 20px;
-    color: #c76e06;
-}
-
 header {
     position: fixed;
-}
-
-tbody td {
-    border-top: 2px solid #024d03;
-    border-right: 2px solid #024d03;
-}
-
-thead td {
-    padding-left: 10px;
-    padding-right: 50px;
-}
-
-tbody td {
-    text-align: center;
 }
 
 .dropdown:hover .dropdown-menu {

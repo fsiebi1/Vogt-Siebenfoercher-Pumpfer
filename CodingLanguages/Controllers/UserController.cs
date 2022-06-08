@@ -9,7 +9,8 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
-// profil - view und admin - view
+// multilingual
+// newsletter
 
 namespace CodingLanguages.Controllers {
     public class UserController : Controller {
@@ -84,7 +85,7 @@ namespace CodingLanguages.Controllers {
                 try
                 {
                     await _rep.ConnectAsync();
-                    User wholeUser = await _rep.LoginAsync(userDataFromForm);
+                    User wholeUser = await _rep.LoginAsync(userDataFromForm.Username, userDataFromForm.Password);
 
                     if (wholeUser != null)
                     {
@@ -94,7 +95,7 @@ namespace CodingLanguages.Controllers {
                     }
                     else
                     {
-                        return View("_Message", new Message("Login", "Login fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                        return View("_Message", new Message("Login", "Login fehlgeschlagen", "Username / Email oder Password falsch!"));
                     }
 
                 }
@@ -118,6 +119,9 @@ namespace CodingLanguages.Controllers {
         }
  
         public async Task<IActionResult> Profil() {
+            if(HttpContext.Session.GetString("name") == "" || HttpContext.Session.GetString("name") == null)
+                return RedirectToAction("Login");
+
             try {
                 await _rep.ConnectAsync();
                 User user = await _rep.GetUserAsync(HttpContext.Session.GetString("name"));
@@ -131,7 +135,7 @@ namespace CodingLanguages.Controllers {
 
             }
             catch (DbException) {          // basisklasse datenbank-Exceptions
-                return View("_Message", new Message("Login", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                return View("_Message", new Message("Profil", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
 
             }
             finally {
@@ -139,25 +143,301 @@ namespace CodingLanguages.Controllers {
             }
         }
 
+        [HttpGet]
         public async Task<IActionResult> Update() {
+            if (HttpContext.Session.GetString("name") == "" || HttpContext.Session.GetString("name") == null)
+                return RedirectToAction("Login");
+
+            try {
+                await _rep.ConnectAsync();
+                User user = await _rep.GetUserAsync(HttpContext.Session.GetString("name"));
+
+                if (user != null) {
+                    RegistrationViewModel rvm = new RegistrationViewModel();
+                    rvm.Countries = getCountriesEN();
+                    user.UsernameOld = user.Username;
+                    user.EmailOld = user.Email;
+                    rvm.User = user;
+                    return View(rvm);
+                }
+                else {
+                    return View("_Message", new Message("Update", "Daten konnten nicht vom Server geladen werden", "Bitte probieren Sie es später erneut"));
+                }
+
+            }
+            catch (DbException) {          // basisklasse datenbank-Exceptions
+                return View("_Message", new Message("Update", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+
+            }
+            finally {
+                await _rep.DisconnectAsync();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(RegistrationViewModel userDataFromForm) {
+
+            if (userDataFromForm == null) {
+                return RedirectToAction("Update");
+            }
+
+            ValidateUpdateData(userDataFromForm.User);
+
+            try {
+                await _rep.ConnectAsync();
+                User u = await _rep.LoginAsync(userDataFromForm.User.UsernameOld, userDataFromForm.User.Password);
+                
+                if(u == null) {
+                    ModelState.AddModelError("User.Password", "Falsches Passwort!");
+                }
+            } catch(DbException) {
+                return View("_Message", new Message("Update", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+            } finally {
+                await _rep.DisconnectAsync();
+            }
+
+            if (ModelState.IsValid) {
+                try {
+                    await _rep.ConnectAsync();
+
+                    if (await _rep.UpdateAsync(userDataFromForm.User)) {
+                        HttpContext.Session.SetString("name", userDataFromForm.User.Username);
+                        return View("_Message", new Message("Update", "User '" + userDataFromForm.User.Username + "' wurde erfolgreich upgedated!"));
+                    }
+                    else {
+                        return View("_Message", new Message("Update", "Update fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                    }
+
+                }
+                catch (DbException) {          // basisklasse datenbank-Exceptions
+                    return View("_Message", new Message("Update", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+
+                }
+                finally {
+                    await _rep.DisconnectAsync();
+                }
+            }
+
+            userDataFromForm.Countries = getCountriesEN();
+            return View(userDataFromForm);
+        }
+
+        [HttpGet]
+        public IActionResult ChangePassword() {
+            if (HttpContext.Session.GetString("name") == "" || HttpContext.Session.GetString("name") == null)
+                return RedirectToAction("Login");
+
             return View();
         }
 
-        public async Task<IActionResult> ChangePassword() {
-            return View();
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(User userDataFromForm) {
+            if (userDataFromForm == null) {
+                return RedirectToAction("ChangePassword");
+            }
+
+            ValidatePasswordData(userDataFromForm);
+
+            try {
+                await _rep.ConnectAsync();
+                User u = await _rep.LoginAsync(HttpContext.Session.GetString("name"), userDataFromForm.PasswordOld);
+
+                if (u == null) {
+                    ModelState.AddModelError("PasswordOld", "Falsches Passwort!");
+                }
+            }
+            catch (DbException) {
+                return View("_Message", new Message("Password Change", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+            }
+            finally {
+                await _rep.DisconnectAsync();
+            }
+
+            if (ModelState.IsValid) {
+                try {
+                    await _rep.ConnectAsync();
+
+                    if (await _rep.SetPasswordAsync(HttpContext.Session.GetString("name"), userDataFromForm.Password)) {
+                        return View("_Message", new Message("Password Change", "Passwort erfolgreich geändert!"));
+                    }
+                    else {
+                        return View("_Message", new Message("Password Change", "Passwortänderung fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                    }
+
+                }
+                catch (DbException) {          // basisklasse datenbank-Exceptions
+                    return View("_Message", new Message("Password Change", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+
+                }
+                finally {
+                    await _rep.DisconnectAsync();
+                }
+            }
+
+            return View(userDataFromForm);
         }
 
         public async Task<IActionResult> Delete() {
-            return await Delete(HttpContext.Session.GetString("name"));
+            if (HttpContext.Session.GetString("name") == "" || HttpContext.Session.GetString("name") == null)
+                return RedirectToAction("Login");
+
+            string username = HttpContext.Session.GetString("name");
+
+            try {
+                await _rep.ConnectAsync();
+
+                if (await _rep.DeleteAsync(username)) {
+                    HttpContext.Session.SetString("name", "");
+                    HttpContext.Session.SetInt32("admin", 0);
+                    return View("_Message", new Message("Delete", "User '" + username + "' wurde erfolgreich gelöscht!"));
+                }
+                else {
+                    return View("_Message", new Message("Delete", "Delete fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                }
+
+            }
+            catch (DbException) {          // basisklasse datenbank-Exceptions
+                return View("_Message", new Message("Delete", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+
+            }
+            finally {
+                await _rep.DisconnectAsync();
+            }
         }
 
-        public async Task<IActionResult> Delete(string username) {
-            return View("_Message", new Message("Delete", "User '" + username + "' wurde erfolgreich gelöscht!"));
+        public async Task<IActionResult> AdminArea() {
+            if (HttpContext.Session.GetString("name") == "" || HttpContext.Session.GetString("name") == null)
+                return RedirectToAction("Login");
+
+            if (HttpContext.Session.GetInt32("admin") != 1 )
+                return View("_Message", new Message("Admin Area", "Fehlende Zugriffsberechtigung", "Bitte melden Sie sich als Admin an!"));
+
+            try
+            {
+                await _rep.ConnectAsync();
+                List<User> users = await _rep.GetAllUsersAsync();
+
+                if (users?.Count() != 0)
+                {
+                    return View(users);
+                }
+                else
+                {
+                    return View("_Message", new Message("Admin Area", "Keine Daten vorhanden!", "Bitte probieren Sie es später erneut"));
+                }
+
+            }
+            catch (DbException)
+            {          // basisklasse datenbank-Exceptions
+                return View("_Message", new Message("Admin Area", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+
+            }
+            finally
+            {
+                await _rep.DisconnectAsync();
+            }
         }
 
-        public IActionResult AdminArea() {
-            // Abprüfen, ob in der Session wirklich drin steht, dass der da was tun bzw sehen darf 
-            return View();
+        public async Task<IActionResult> DeleteAdmin(string id)
+        {
+            if(HttpContext.Session.GetInt32("admin") != 1)
+                return View("_Message", new Message("Admin Area", "Fehlende Zugriffsberechtigung", "Bitte melden Sie sich als Admin an!"));
+
+            if (HttpContext.Session.GetString("name") == id)
+                return RedirectToAction("Delete");
+
+            try {
+                await _rep.ConnectAsync();
+
+                if (await _rep.DeleteAsync(id)) {
+                    return View("_Message", new Message("Delete", "User '" + id + "' wurde erfolgreich gelöscht!"));
+                }
+                else {
+                    return View("_Message", new Message("Delete", "Delete fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                }
+
+            }
+            catch (DbException) {          // basisklasse datenbank-Exceptions
+                return View("_Message", new Message("Delete", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+
+            }
+            finally {
+                await _rep.DisconnectAsync();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateAdmin(string id)
+        {
+            if (HttpContext.Session.GetInt32("admin") != 1)
+                return View("_Message", new Message("Admin Area", "Fehlende Zugriffsberechtigung", "Bitte melden Sie sich als Admin an!"));
+
+            try
+            {
+                await _rep.ConnectAsync();
+                User user = await _rep.GetUserAsync(id);
+
+                if (user != null)
+                {
+                    RegistrationViewModel rvm = new RegistrationViewModel();
+                    rvm.Countries = getCountriesEN();
+                    user.UsernameOld = user.Username;
+                    user.EmailOld = user.Email;
+                    rvm.User = user;
+                    return View(rvm);
+                }
+                else
+                {
+                    return View("_Message", new Message("Update", "Daten konnten nicht vom Server geladen werden", "Bitte probieren Sie es später erneut"));
+                }
+
+            }
+            catch (DbException)
+            {          // basisklasse datenbank-Exceptions
+                return View("_Message", new Message("Update", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+
+            }
+            finally
+            {
+                await _rep.DisconnectAsync();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateAdmin(RegistrationViewModel userDataFromForm)
+        {
+
+            ValidateUpdateData(userDataFromForm.User);
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _rep.ConnectAsync();
+
+                    if (await _rep.UpdateAsync(userDataFromForm.User))
+                    {
+                        return View("_Message", new Message("Update", "User '" + userDataFromForm.User.Username + "' wurde erfolgreich upgedated!"));
+                    }
+                    else
+                    {
+                        return View("_Message", new Message("Update", "Update fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                    }
+
+                }
+                catch (DbException)
+                {          // basisklasse datenbank-Exceptions
+                    return View("_Message", new Message("Update", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+
+                }
+                finally
+                {
+                    await _rep.DisconnectAsync();
+                }
+            }
+
+            userDataFromForm.Countries = getCountriesEN();
+            return View(userDataFromForm);
         }
 
         public IActionResult Newsletter() {
@@ -220,6 +500,50 @@ namespace CodingLanguages.Controllers {
 
             if (u.Password == null || u.Password.Length < 8)
                 ModelState.AddModelError("Password", "Das Passwort muss mind. 8 Zeichen lang sein.");
+        }
+
+        private void ValidateUpdateData(User u) {
+
+            if (u == null) {
+                return;
+            }
+
+            if (u.Username == null || u.Username.Trim().Length < 4 || u.Username.Trim().Length > 100) {
+                ModelState.AddModelError("User.Username", "Der Benutzername muss mind. 4  und max. 100 Zeichen lang sein.");
+            }
+            else if (u.Username.Contains('@')) {
+                ModelState.AddModelError("User.Username", "Der Benutzername darf kein @ enthalten.");
+            }
+
+            if (u.Firstname == null || u.Firstname.Trim().Length < 4 || u.Firstname.Trim().Length > 100) {
+                ModelState.AddModelError("User.Firstname", "Der Vorname muss mind. 4 und max. 100 Zeichen lang sein.");
+            }
+
+            if (u.Lastname == null || u.Lastname.Trim().Length < 4 || u.Lastname.Trim().Length > 100) {
+                ModelState.AddModelError("User.Lastname", "Der Nachname muss mind. 4 und max. 100 Zeichen lang sein.");
+            }
+
+            if (u.Birthdate > DateTime.Now.AddYears(-12)) {
+                ModelState.AddModelError("User.Birthdate", "User müssen mindestens 12 Jahre alt sein.");
+            }
+
+            if (u.Email == null || !u.Email.Contains('@') || u.Email.Trim().Length < 8 || u.Email.Trim().Length > 100) {
+                ModelState.AddModelError("User.Email", "Es muss eine gültige Email-Addresse eingegeben werden, welche länger als 7 und kürzer als 100 Zeichen ist.");
+            }
+        }
+
+        private void ValidatePasswordData(User u) {
+
+            if (u == null) {
+                return;
+            }
+
+            if (u.Password == null || u.Password.Length < 8) {
+                ModelState.AddModelError("Password", "Das Passwort muss mind. 8 Zeichen lang sein.");
+            }
+            else if (u.CPassword == null || !u.CPassword.Equals(u.Password)) {
+                ModelState.AddModelError("CPassword", "Passwörter stimmen nicht überein.");
+            }
         }
 
         public async Task<bool> IsUniqueEmail(string email) {
