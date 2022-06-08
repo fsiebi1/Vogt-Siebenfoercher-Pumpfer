@@ -3,7 +3,12 @@
     ViewData["Title"] = "Update";
 }
 
-<h1>Update</h1>
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<UserController> StringLocalizer
+
+<h1>@StringLocalizer["chpf"]</h1>
 <br />
 
 <div class="form">

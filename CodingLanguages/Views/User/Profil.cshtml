@@ -3,73 +3,70 @@
     ViewData["Title"] = "Profil";
 }
 
-<h1>Profil</h1>
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<UserController> StringLocalizer
+
+<h1>@StringLocalizer["profil"]</h1>
 
 <div class="form">
     <input type="hidden" asp-for="UserID" />
     <input type="hidden" asp-for="Admin" />
 
     <p>
-        <label asp-for="Username">Username</label>
+        <label asp-for="Username">@StringLocalizer["username"]</label>
         <input type="text" asp-for="Username" readonly />
     </p>
 
     <p>
-        <label asp-for="Firstname">Firstname</label>
+        <label asp-for="Firstname">@StringLocalizer["firstname"]</label>
         <input type="text" asp-for="Firstname" readonly />
     </p>
 
     <p>
-        <label asp-for="Lastname">Last Name</label>
+        <label asp-for="Lastname">@StringLocalizer["lastname"]</label>
         <input type="text" asp-for="Lastname" readonly />
     </p>
 
     <p>
-        <label asp-for="Email">Email</label>
+        <label asp-for="Email">@StringLocalizer["email"]</label>
         <input type="email" asp-for="Email" readonly>
     </p>
 
     <p>
-        <label asp-for="Gender">Gender</label><br />
+        <label asp-for="Gender">@StringLocalizer["gender"]</label><br />
         <select asp-for="Gender" readonly>
-            @switch ((int)Model.Gender) {
+            @switch ((int)Model.Gender)
+            {
                 case 0:
-                    <option value="0">männlich</option>
+                    <option value="0">@StringLocalizer["gen.ma"]</option>
                     break;
                 case 1:
-                    <option value="1">weiblich</option>
+                    <option value="1">@StringLocalizer["gen.fm"]</option>
                     break;
                 case 2:
-                    <option value="2">divers</option>
+                    <option value="2">@StringLocalizer["gen.di"]</option>
                     break;
             }
         </select>
     </p>
 
     <p>
-        <label asp-for="Birthdate">Birthdate</label>
+        <label asp-for="Birthdate">@StringLocalizer["birthday"]</label>
         <input type="date" asp-for="Birthdate" readonly>
     </p>
 
-    <p>
         <form class="changeForm" action="/user/update" method="get">
-            <input id="btnChange" type="submit" value="Profil ändern">
+            <input id="btnChange" type="submit" value=@StringLocalizer["chpf"]>
         </form>
 
         <form class="changeForm" action="/user/changePassword" method="get">
-            <input style="background-color: blue;" id="btnChange" type="submit" value="Passwort ändern">
+            <input style="background-color: blue;" id="btnChange" type="submit" value=@StringLocalizer["chpwd"]>
         </form>
 
         <form class="changeForm" action="/user/delete" method="get">
-            <input style="background-color: red;" id="btnChange" type="submit" value="Löschen">
+            <input style="background-color: red;" id="btnChange" type="submit" value=@StringLocalizer["del"]>
         </form>
-    </p>
 
 </div>
-
-
-@*
-@section Scripts {
-    <script src="~/js/registration.js" asp-append-version="true"></script>
-}
-    *@

@@ -1,7 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.Extensions.Options
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<UserController> StringLocalizer
+
+@inject IOptions<RequestLocalizationOptions> LocOptions
 @inject IHttpContextAccessor httpContextAccessor
 
 @{
+    string returnUrl = ViewContext.HttpContext.Request.Path;
     ViewData["Title"] = "Header";
 }
 
@@ -15,54 +24,28 @@
             <li id="Java"><a href="/java/Index" onload="animateSwitching2()">Java</a></li>
             <li id="net"><a href="/net/Index" onclick="activeNav(2);">.net</a></li>
             <li id="Pyhton"><a href="/python/Index" onclick="activeNav(3);">Python</a></li>
-            @*<li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        Java
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/java/Index">Infos</a></li>
-                        <li><a href="/java/Index">Infos</a></li>
-                        <li><a href="/java/Index">Infos</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        .NET
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/net/Index">Infos</a></li>
-                        <li><a href="/net/Index">Infos</a></li>
-                        <li><a href="/net/Index">Infos</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        Python
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/python/Index">Infos</a></li>
-                        <li><a href="/python/Index">Infos</a></li>
-                        <li><a href="/python/Index">Infos</a></li>
-                    </ul>
-                </li>*@
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            @if (@httpContextAccessor.HttpContext.Session.GetString("name") == null || @httpContextAccessor.HttpContext.Session.GetString("name") == "") {
-                <li><a href="/user/Register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+            @if (@httpContextAccessor.HttpContext.Session.GetString("name") == null || @httpContextAccessor.HttpContext.Session.GetString("name") == "")
+            {
+                <li><a href="/user/Register"><span class="glyphicon glyphicon-user"></span> @StringLocalizer["reg"]</a></li>
                 <li><a href="/user/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             }
-            else {
-                <li><a href="/user/Profil"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
-                if (@httpContextAccessor.HttpContext.Session.GetInt32("admin") == 1) {
-                    <li><a href="/user/AdminArea"><span class="glyphicon"></span>Admin Area</a></li>
+            else
+            {
+                <li><a href="/user/Profil"><span class="glyphicon glyphicon-user"></span> @StringLocalizer["profil"]</a></li>
+                if (@httpContextAccessor.HttpContext.Session.GetInt32("admin") == 1)
+                {
+                    <li><a href="/user/AdminArea"><span class="glyphicon"></span>@StringLocalizer["adm"]</a></li>
                 }
                 <li><a href="/user/Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             }
 
         </ul>
-        <button class="btn btn-danger navbar-right navbar-btn">DE</button>
+        <form asp-controller="home" asp-action="changeLanguage" class="navbar-right navbar-btn">
+            <input type="hidden" id="returnUrl" name="returnUrl" value="@returnUrl" />
+            <input type="submit" value=@StringLocalizer["hea.lang"] style="margin: 0; padding: 7px 12px; background-color: blue;">
+        </form>
+
     </div>
 </nav>

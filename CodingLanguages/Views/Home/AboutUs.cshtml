@@ -1,7 +1,12 @@
 ﻿
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<HomeController> StringLocalizer
+
 @{
     ViewData["Title"] = "AboutUs";
 }
 
-<h1>AboutUs</h1>
+<h1>@StringLocalizer["aboutUs"]</h1>
 

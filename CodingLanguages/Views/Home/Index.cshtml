@@ -1,10 +1,18 @@
 ﻿@model List<CodingLanguages.Models.Languages>
 
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<HomeController> StringLocalizer
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <link rel="stylesheet" href="~/css/talbe.css" />
+
+<h1>@StringLocalizer["index.h1"]</h1>
+<br />
 
 @if ((Model != null) && (Model.Count >= 1))
 {
@@ -12,16 +20,16 @@
         <thead>
             <tr>
                 <td>
-                    Sprache
+                    @StringLocalizer["index.lang"]
                 </td>
                 <td>
-                    Objektorientiert
+                    @StringLocalizer["index.object"]
                 </td>
                 <td>
-                    Vorteile
+                    @StringLocalizer["adv"]
                 </td>
                 <td>
-                    Nachteile
+                    @StringLocalizer["dia"]
                 </td>
             </tr>
         </thead>

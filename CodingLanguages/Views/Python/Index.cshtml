@@ -3,283 +3,288 @@
     ViewData["Title"] = "Index";
 }
 
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<HomeController> StringLocalizer
+
 <link rel="stylesheet" href="~/css/talbe.css" />
 
 <h1>Python</h1>
 
-<div>
-    <p class="paragrath">
-        Python ist eine Programmiersprache, die dank ihrer klaren Syntax und einfachen Lesbarkeit leicht zu erlernen ist und sich sehr vielseitig einsetzen lässt. Für die gängigen Betriebssysteme ist Python frei verfügbar. Die üblichen Programmierparadigmen wie die objektorientierte oder funktionale Programmierung werden unterstützt.
-    </p>
-    <p class="paragrath">
-        Bei Python handelt es sich um eine Programmiersprache mit einer klaren Syntax und guten Lesbarkeit. Sie gilt als leicht zu erlernen und ist in den gängigen Betriebssystemen interpretierbar. Python unterstützt mehrere Paradigmen der Programmierung wie die funktionale, objektorientierte oder aspektorientierte Programmierung und ist auch als Skriptsprache nutzbar.
-    </p>
-    <p class="paragrath">
-        Grundsätzlich ist für Python keine Entwicklungsumgebung notwendig, da Pythoncode nicht kompiliert werden muss und Skripte sich mit beliebigen Texteditoren schreiben lassen. Interpreter sind interaktiv und erlauben mit den Möglichkeiten der Sprache zu experimentieren. Gängige von Programmierern genutzte Editoren wie Emacs oder Vim sind für Python anpassbar.
-    </p>
-    <p class="paragrath">
-        Oft ist gemeinsam mit Python IDLE installiert. IDLE besteht aus einer Shell, einer Textumgebung und Debuggingfunktionen, stellt aber keine vollwertige Entwicklungsumgebung (IDE – Integrated Development Environment) dar.<br /><br /><br />
-    </p>
-    <table>
-        <thead>
-            <tr>
-                <td width="50%">
-                    Vorteile
-                </td>
-                <td width="50%">
-                    Nachteile
-                </td>
-            </tr>
-        </thead>
 
-        <tbody>
-            <tr>
-                <td>
-                    <u>Benutzerfreundlichkeit:</u><br />
-                    Experten und Anfänger können den Code leicht verstehen und Sie können mit dieser Sprache schnell produktiv werden, da sie weniger Dialekte als andere beliebte Sprachen wie Perl enthält. Da sein Quellcode dem Pseudocode ähnelt, ist es auch einfach zu erlernen. Sobald Sie mit dem Lernen beginnen, können Sie praktisch sofort mit dem Codieren beginnen.
-                </td>
-                <td>
-                    <u>Desingeinschränkungen:</u><br />
-                    Sogar die größten Fans von Python würden bestimmten Designeinschränkungen in der Sprache zustimmen, da es dynamisch geschrieben wird. Dies erfordert mehr Tests und Fehler, um nur während der Laufzeit aufzutauchen. Die globale Interpretersperre der Sprache bedeutet, dass immer nur ein Thread auf Python-Interna zugreifen kann.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <u>Unkompliziert und schnell:</u><br />
-                    Die Python-Community bietet Anwendern eine schnelle und effektive Unterstützung. Hunderttausende Entwickler arbeiten hart daran, Fehler zu finden und zu beheben und neue Patches und Verbesserungen für die Sprache zu entwickeln. Das bietet auch schnelles Feedback in vielerlei Hinsicht. Zum einen können Programmierer verschiedene Aufgaben überspringen, die in anderen Sprachen ausgeführt werden müssten.
-                </td>
-                <td>
-                    <u>Mangel an mobilen Computern und Browsern:</u><br />
-                    Python ist auf Desktop- und Serverplattformen stark, auf mobilen Plattformen jedoch schwach. Es gab nur eine Handvoll Smartphone-Apps, die mit Python entwickelt wurden, und die Sprache ist auf der Clientseite von Webentwicklungsanwendungen selten zu finden. Die Sprache ist auch in Webentwicklungsbrowsern nicht vorhanden. Dies liegt daran, dass immer noch eine gute sichere Sandboxsprache dafür fehlt.
-                </td>
-            </tr>
-        </tbody>
+<p class="paragrath">
+    @StringLocalizer["py.p1"]
+</p>
+<p class="paragrath">
+    @StringLocalizer["py.p2"]
+</p>
+<p class="paragrath">
+    @StringLocalizer["py.p3"]
+</p>
+<p class="paragrath">
+    @StringLocalizer["py.p4"]<br /><br /><br />
+</p>
+<table>
+    <thead>
+        <tr>
+            <td width="50%">
+                @StringLocalizer["adv"]
+            </td>
+            <td width="50%">
+                @StringLocalizer["dia"]
+            </td>
+        </tr>
+    </thead>
 
-    </table>
+    <tbody>
+        <tr>
+            <td>
+                <u>@StringLocalizer["py.ad1h"]</u><br />
+                @StringLocalizer["py.ad1"]
+            </td>
+            <td>
+                <u>@StringLocalizer["py.ad2h"]</u><br />
+                @StringLocalizer["py.ad2"]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <u>@StringLocalizer["py.ad3h"]</u><br />
+                @StringLocalizer["py.ad3"]
+            </td>
+            <td>
+                <u>@StringLocalizer["py.ad4h"]</u><br />
+                @StringLocalizer["py.ad4"]
+            </td>
+        </tr>
+    </tbody>
 
-    <div id="playButton" onclick="brython()">
-        <div class="circle"></div>
-        <div class="arrowRightOuter"></div>
-        <div class="arrowRightInner"></div>
-    </div>
-    <div id="return" class="codebox">
+</table>
+
+<div id="playButton" onclick="brython()">
+    <div class="circle"></div>
+    <div class="arrowRightOuter"></div>
+    <div class="arrowRightInner"></div>
+</div>
+<div id="return" class="codebox">
+    <div class="codebox_empty">
         <div class="codebox_empty">
-            <div class="codebox_empty">
-                <code class="keyword">def</code>
-                <code class="plain end">&nbsp;partition(arr, low, high):</code>
-            </div>
-            <div class="codebox_empty">
-                <pre></pre>
-                <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;i</code>
-                <code class="keyword">&nbsp;=</code>
-                <code class="plain">&nbsp;(low</code>
-                <code class="keyword">-</code>
-                <code class="param">1</code>
-                <code class="plain">)</code>
-                <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;#index of smaller element</code>
-                <pre></pre>
-                <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;pivot</code>
-                <code class="keyword">&nbsp;=</code>
-                <code class="plain">&nbsp;arr[high]</code>
-                <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;#pivot</code>
-            </div>
-            <div class="codebox_empty">
-                <pre> </pre>
-                <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;for</code>
-                <code class="plain">&nbsp;j</code>
-                <code class="keyword">&nbsp;in</code>
-                <code class="method">&nbsp;range</code>
-                <code class="plain">(low, high):</code>
-            </div>
-            <div class="codebox_empty">
-                <pre> </pre>
-                <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#If current element is smaller than or</code>
-                <pre></pre>
-                <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#equal to pivot</code>
-                <pre></pre>
-                <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if</code>
-                <code class="plain">&nbsp;arr[j] <</code>
-                <code class="keyword">=</code>
-                <code class="plain">&nbsp;pivot:</code>
-            </div>
-            <div class="codebox_empty">
-                <pre> </pre>
-                <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Increment index of smaller element</code>
-                <pre></pre>
-                <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i</code>
-                <code class="keyword">&nbsp;=</code>
-                <code class="plain">&nbsp;i</code>
-                <code class="keyword">+</code>
-                <code class="param">1</code>
-                <pre></pre>
-                <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[i], arr[j]</code>
-                <code class="keyword">&nbsp;=</code>
-                <code class="plain">&nbsp;[j], arr[i]</code>
-            </div>
-            <div class="codebox_empty">
-                <pre> </pre>
-                <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;arr[i</code>
-                <code class="keyword">+</code>
-                <code class="param">1</code>
-                <code class="plain">], arr[high]</code>
-                <code class="keyword">&nbsp;=</code>
-                <code class="plain">&nbsp;arr[high], arr[i</code>
-                <code class="keyword">+</code>
-                <code class="param">1</code>
-                <code class="plain">]</code>
-                <pre></pre>
-                <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;return</code>
-                <code class="plain">&nbsp;(i</code>
-                <code class="keyword">+</code>
-                <code class="param">1</code>
-                <code class="plain">)</code>
-            </div>
-            <div class="codebox_empty">
-                <pre> </pre>
-                <code class="keyword">def</code>
-                <code class="plain">&nbsp;quickSort(arr, low, high):</code>
-            </div>
-            <div class="codebox_empty">
-                <pre></pre>
-                <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;if</code>
-                <code class="method">&nbsp;len</code>
-                <code class="plain">(arr)</code>
-                <code class="keyword">&nbsp;==</code>
-                <code class="param">&nbsp;1</code>
-                <code class="plain">:</code>
-            </div>
-            <div class="codebox_empty">
-                <pre></pre>
-                <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</code>
-                <code class="plain">&nbsp;arr</code>
-            </div>
-            <div class="codebox_empty">
-                <pre> </pre>
-                <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;if</code>
-                <code class="plain">&nbsp;low < high:</code>
-            </div>
-            <div class="codebox_empty">
-                <pre></pre>
-                <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#pi is partitioning index, arr[p] is now</code>
-                <pre></pre>
-                <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#at the right place</code>
-                <pre></pre>
-                <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pi</code>
-                <code class="keyword">&nbsp;=</code>
-                <code class="plain">&nbsp;partition(arr, low, high)</code>
-            </div>
-            <div class="codebox_empty">
-                <pre> </pre>
-                <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Separately sort elements before</code>
-                <pre></pre>
-                <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#partition and after partition</code>
-                <pre></pre>
-                <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quickSort(arr, low, pi</code>
-                <code class="keyword">-</code>
-                <code class="param">1</code>
-                <code class="plain">)</code>
-                <pre></pre>
-                <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quickSort(arr, pi</code>
-                <code class="keyword">+</code>
-                <code class="param">1</code>
-                <code class="plain">, high)</code>
-            </div>
-            <div class="codebox_empty">
-                <pre> </pre>
-                <code class="comments">#Driver code to test above</code>
-                <pre></pre>
-                <code class="plain">arr</code>
-                <code class="keyword">&nbsp;=</code>
-                <code class="plain">&nbsp;[</code>
-                <code class="param">1</code>
-                <code class="plain">,</code>
-                <code class="param">&nbsp;2</code>
-                <code class="plain">,</code>
-                <code class="param">&nbsp;3</code>
-                <code class="plain">,</code>
-                <code class="param">&nbsp;4</code>
-                <code class="plain">,</code>
-                <code class="param">&nbsp;5</code>
-                <code class="plain">,</code>
-                <code class="param">&nbsp;6</code>
-                <code class="plain">,</code>
-                <code class="param">&nbsp;7</code>
-                <code class="plain">,</code>
-                <code class="param">&nbsp;8</code>
-                <code class="plain">,</code>
-                <code class="param">&nbsp;9</code>
-                <code class="plain">,</code>
-                <code class="param">&nbsp;10</code>
-                <code class="plain">]</code>
-                <pre></pre>
-                <code class="plain">random.shuffle(arr)</code>
-                <pre></pre>
-                <code class="plain">n</code>
-                <code class="keyword">&nbsp;=</code>
-                <code class="method">&nbsp;len</code>
-                <code class="plain">(arr)</code>
-                <pre></pre>
-                <code class="plain">quickSort(arr,</code>
-                <code class="param">&nbsp;0</code>
-                <code class="plain">, n</code>
-                <code class="keyword">-</code>
-                <code class="param">1</code>
-                <code class="plain">)</code>
-            </div>
-            <div class="codebox_empty">
-                <pre></pre>
-                <code class="keyword">print</code>
-                <code class="plain">(</code>
-                <code class="text">"Sorted array is:"</code>
-                <code class="plain">)</code>
-                <pre></pre>
-                <code class="keyword">for</code>
-                <code class="plain">&nbsp;i</code>
-                <code class="keyword">&nbsp;in</code>
-                <code class="method">&nbsp;range</code>
-                <code class="plain">(n):</code>
-                <pre></pre>
-                <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;print</code>
-                <code class="plain">(</code>
-                <code class="text">"%d"</code>
-                <code class="keyword">&nbsp;%</code>
-                <code class="plain">&nbsp;arr[i])</code>
-            </div>
+            <code class="keyword">def</code>
+            <code class="plain end">&nbsp;partition(arr, low, high):</code>
+        </div>
+        <div class="codebox_empty">
+            <pre></pre>
+            <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;i</code>
+            <code class="keyword">&nbsp;=</code>
+            <code class="plain">&nbsp;(low</code>
+            <code class="keyword">-</code>
+            <code class="param">1</code>
+            <code class="plain">)</code>
+            <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;#index of smaller element</code>
+            <pre></pre>
+            <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;pivot</code>
+            <code class="keyword">&nbsp;=</code>
+            <code class="plain">&nbsp;arr[high]</code>
+            <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;#pivot</code>
+        </div>
+        <div class="codebox_empty">
+            <pre> </pre>
+            <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;for</code>
+            <code class="plain">&nbsp;j</code>
+            <code class="keyword">&nbsp;in</code>
+            <code class="method">&nbsp;range</code>
+            <code class="plain">(low, high):</code>
+        </div>
+        <div class="codebox_empty">
+            <pre> </pre>
+            <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#If current element is smaller than or</code>
+            <pre></pre>
+            <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#equal to pivot</code>
+            <pre></pre>
+            <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if</code>
+            <code class="plain">&nbsp;arr[j] <</code>
+            <code class="keyword">=</code>
+            <code class="plain">&nbsp;pivot:</code>
+        </div>
+        <div class="codebox_empty">
+            <pre> </pre>
+            <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Increment index of smaller element</code>
+            <pre></pre>
+            <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i</code>
+            <code class="keyword">&nbsp;=</code>
+            <code class="plain">&nbsp;i</code>
+            <code class="keyword">+</code>
+            <code class="param">1</code>
+            <pre></pre>
+            <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[i], arr[j]</code>
+            <code class="keyword">&nbsp;=</code>
+            <code class="plain">&nbsp;[j], arr[i]</code>
+        </div>
+        <div class="codebox_empty">
+            <pre> </pre>
+            <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;arr[i</code>
+            <code class="keyword">+</code>
+            <code class="param">1</code>
+            <code class="plain">], arr[high]</code>
+            <code class="keyword">&nbsp;=</code>
+            <code class="plain">&nbsp;arr[high], arr[i</code>
+            <code class="keyword">+</code>
+            <code class="param">1</code>
+            <code class="plain">]</code>
+            <pre></pre>
+            <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;return</code>
+            <code class="plain">&nbsp;(i</code>
+            <code class="keyword">+</code>
+            <code class="param">1</code>
+            <code class="plain">)</code>
+        </div>
+        <div class="codebox_empty">
+            <pre> </pre>
+            <code class="keyword">def</code>
+            <code class="plain">&nbsp;quickSort(arr, low, high):</code>
+        </div>
+        <div class="codebox_empty">
+            <pre></pre>
+            <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;if</code>
+            <code class="method">&nbsp;len</code>
+            <code class="plain">(arr)</code>
+            <code class="keyword">&nbsp;==</code>
+            <code class="param">&nbsp;1</code>
+            <code class="plain">:</code>
+        </div>
+        <div class="codebox_empty">
+            <pre></pre>
+            <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</code>
+            <code class="plain">&nbsp;arr</code>
+        </div>
+        <div class="codebox_empty">
+            <pre> </pre>
+            <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;if</code>
+            <code class="plain">&nbsp;low < high:</code>
+        </div>
+        <div class="codebox_empty">
+            <pre></pre>
+            <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#pi is partitioning index, arr[p] is now</code>
+            <pre></pre>
+            <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#at the right place</code>
+            <pre></pre>
+            <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pi</code>
+            <code class="keyword">&nbsp;=</code>
+            <code class="plain">&nbsp;partition(arr, low, high)</code>
+        </div>
+        <div class="codebox_empty">
+            <pre> </pre>
+            <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Separately sort elements before</code>
+            <pre></pre>
+            <code class="comments">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#partition and after partition</code>
+            <pre></pre>
+            <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quickSort(arr, low, pi</code>
+            <code class="keyword">-</code>
+            <code class="param">1</code>
+            <code class="plain">)</code>
+            <pre></pre>
+            <code class="plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quickSort(arr, pi</code>
+            <code class="keyword">+</code>
+            <code class="param">1</code>
+            <code class="plain">, high)</code>
+        </div>
+        <div class="codebox_empty">
+            <pre> </pre>
+            <code class="comments">#Driver code to test above</code>
+            <pre></pre>
+            <code class="plain">arr</code>
+            <code class="keyword">&nbsp;=</code>
+            <code class="plain">&nbsp;[</code>
+            <code class="param">1</code>
+            <code class="plain">,</code>
+            <code class="param">&nbsp;2</code>
+            <code class="plain">,</code>
+            <code class="param">&nbsp;3</code>
+            <code class="plain">,</code>
+            <code class="param">&nbsp;4</code>
+            <code class="plain">,</code>
+            <code class="param">&nbsp;5</code>
+            <code class="plain">,</code>
+            <code class="param">&nbsp;6</code>
+            <code class="plain">,</code>
+            <code class="param">&nbsp;7</code>
+            <code class="plain">,</code>
+            <code class="param">&nbsp;8</code>
+            <code class="plain">,</code>
+            <code class="param">&nbsp;9</code>
+            <code class="plain">,</code>
+            <code class="param">&nbsp;10</code>
+            <code class="plain">]</code>
+            <pre></pre>
+            <code class="plain">random.shuffle(arr)</code>
+            <pre></pre>
+            <code class="plain">n</code>
+            <code class="keyword">&nbsp;=</code>
+            <code class="method">&nbsp;len</code>
+            <code class="plain">(arr)</code>
+            <pre></pre>
+            <code class="plain">quickSort(arr,</code>
+            <code class="param">&nbsp;0</code>
+            <code class="plain">, n</code>
+            <code class="keyword">-</code>
+            <code class="param">1</code>
+            <code class="plain">)</code>
+        </div>
+        <div class="codebox_empty">
+            <pre></pre>
+            <code class="keyword">print</code>
+            <code class="plain">(</code>
+            <code class="text">"Sorted array is:"</code>
+            <code class="plain">)</code>
+            <pre></pre>
+            <code class="keyword">for</code>
+            <code class="plain">&nbsp;i</code>
+            <code class="keyword">&nbsp;in</code>
+            <code class="method">&nbsp;range</code>
+            <code class="plain">(n):</code>
+            <pre></pre>
+            <code class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;print</code>
+            <code class="plain">(</code>
+            <code class="text">"%d"</code>
+            <code class="keyword">&nbsp;%</code>
+            <code class="plain">&nbsp;arr[i])</code>
         </div>
     </div>
-    <div class="codebox">
-        <output class="text" id="answer"></output>
-    </div>
-    <textarea class="hidden" id="copy">def partition(arr, low, high):
-    i = (low-1)    #index of smaller element
-    pivot = arr[high]    #pivot
+</div>
+<div class="codebox">
+    <output class="text" id="answer"></output>
+</div>
+<textarea class="hidden" id="copy">def partition(arr, low, high):
+i = (low-1)    #index of smaller element
+pivot = arr[high]    #pivot
  
-    for j in range(low, high):
+for j in range(low, high):
  
-        #If current element is smaller than or
-        #equal to pivot
-        if arr[j] <= pivot:
+    #If current element is smaller than or
+    #equal to pivot
+    if arr[j] <= pivot:
  
-            #Increment index of smaller element
-            i = i+1
-            arr[i], arr[j] = [j], arr[i]
+        #Increment index of smaller element
+        i = i+1
+        arr[i], arr[j] = [j], arr[i]
  
-    arr[i+1], arr[high] = arr[high], arr[i+1]
-    return (i+1)
+arr[i+1], arr[high] = arr[high], arr[i+1]
+return (i+1)
  
 def quickSort(arr, low, high):
-    if len(arr) == 1:
-        return arr
+if len(arr) == 1:
+    return arr
  
-    if low < high:
-        #pi is partitioning index, arr[p] is now
-        #at the right place
-        pi = partition(arr, low, high)
+if low < high:
+    #pi is partitioning index, arr[p] is now
+    #at the right place
+    pi = partition(arr, low, high)
  
-        #Separately sort elements before
-        #partition and after partition
-        quickSort(arr, low, pi-1)
-        quickSort(arr, pi+1, high)
+    #Separately sort elements before
+    #partition and after partition
+    quickSort(arr, low, pi-1)
+    quickSort(arr, pi+1, high)
  
 #Driver code to test above
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -288,78 +293,75 @@ n = len(arr)
 quickSort(arr, 0, n-1)
 print("Sorted array is:")
 for i in range(n):
-    print("%d" % arr[i])</textarea>
-    <button id="runSnippet" onclick="brython()">Run Code</button>
-    <button id="copyCode" onclick="copyToClickBoard()">Copy Code</button>
+print("%d" % arr[i])</textarea>
+<button id="runSnippet" onclick="brython()">@StringLocalizer["py.r"]</button>
+<button id="copyCode" onclick="copyToClickBoard()">@StringLocalizer["py.c"]</button>
 
-    <!--<a href="~/downloads/test.txt" download="hi">
-        <button type="button">Download Now!</button>
-    </a>-->
 
-    <script>
-        function copyToClickBoard() {
-            var content = document.getElementById('copy').innerHTML;
+<script>
+    function copyToClickBoard() {
+        var content = document.getElementById('copy').innerHTML;
 
-            navigator.clipboard.writeText(content)
-                .then(() => {
-                    alert("Copied code to Clipboard!");
-                })
-                .catch(err => {
-                    alert("Error 409 | Something went wrong!");
-                })
+        navigator.clipboard.writeText(content)
+            .then(() => {
+                alert("Copied code to Clipboard!");
+            })
+            .catch(err => {
+                alert("Error 409 | Something went wrong!");
+            })
 
-        }
-    </script>
-    <script type="text/python">
-        from browser import document
-        import random
+    }
+</script>
+<script type="text/python">
+    from browser import document
+    import random
 
-        def partition(arr, low, high):
-            i = (low-1)		 # index of smaller element
-            pivot = arr[high]	 # pivot
+    def partition(arr, low, high):
+        i = (low-1)		 # index of smaller element
+        pivot = arr[high]	 # pivot
 
-            for j in range(low, high):
+        for j in range(low, high):
 
-                # If current element is smaller than or
-                # equal to pivot
-                if arr[j] <= pivot:
+            # If current element is smaller than or
+            # equal to pivot
+            if arr[j] <= pivot:
 
-                    i = i+1
-                    arr[i], arr[j] = arr[j], arr[i]
+                i = i+1
+                arr[i], arr[j] = arr[j], arr[i]
 
-            arr[i+1], arr[high] = arr[high], arr[i+1]
-            return (i+1)
+        arr[i+1], arr[high] = arr[high], arr[i+1]
+        return (i+1)
 
-        def quickSort(arr, low, high):
-            if len(arr) == 1:
-                return arr
-            if low < high:
-            # pi is partitioning index, arr[p] is now
-                # at right place
-                pi = partition(arr, low, high)
-                # Separately sort elements before
-                # partition and after partition
-                quickSort(arr, low, pi-1)
-                quickSort(arr, pi+1, high)
+    def quickSort(arr, low, high):
+        if len(arr) == 1:
+            return arr
+        if low < high:
+        # pi is partitioning index, arr[p] is now
+            # at right place
+            pi = partition(arr, low, high)
+            # Separately sort elements before
+            # partition and after partition
+            quickSort(arr, low, pi-1)
+            quickSort(arr, pi+1, high)
 
-        # Driver code to test above
-        document["answer"].textContent = ("Unsorted array is: {")
-        arr = [1,2,3,4,5,6,7,8,9,10]
-        random.shuffle(arr)
-        n = len(arr)
-        for i in range(n):
-            if i == n-1:
-                document["answer"].textContent += "{}}".format(arr[i])
-            else:
-                document["answer"].textContent += "{},".format(arr[i])
-        document["answer"].textContent += " - "
+    # Driver code to test above
+    document["answer"].textContent = ("Unsorted array is: {")
+    arr = [1,2,3,4,5,6,7,8,9,10]
+    random.shuffle(arr)
+    n = len(arr)
+    for i in range(n):
+        if i == n-1:
+            document["answer"].textContent += "{}}".format(arr[i])
+        else:
+            document["answer"].textContent += "{},".format(arr[i])
+    document["answer"].textContent += " - "
 
-        quickSort(arr, 0, n-1)
-        document["answer"].textContent += ("Sorted array is: {")
-        for i in range(n):
-            if i == n-1:
-                document["answer"].textContent += "{}}".format(arr[i])
-            else:
-                document["answer"].textContent += "{},".format(arr[i])
-    </script>
+    quickSort(arr, 0, n-1)
+    document["answer"].textContent += ("Sorted array is: {")
+    for i in range(n):
+        if i == n-1:
+            document["answer"].textContent += "{}}".format(arr[i])
+        else:
+            document["answer"].textContent += "{},".format(arr[i])
+</script>
 

@@ -2,15 +2,20 @@
 
 <h3>@Model.Header</h3>
 
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<UserController> StringLocalizer
+
 <p class="paragrath">
-    <b>Meldung:</b>
+    <b>@StringLocalizer["mes.me"]:</b>
     @Model.MessageText
 </p>
 
 @if (Model.Solution != null && Model.Solution.Trim().Length >= 1)
 {
     <p class="paragrath">
-        <b>Lösung:</b>
+        <b>@StringLocalizer["mes.sol"]:</b>
         @Model.Solution
     </p>
 }

@@ -2,20 +2,26 @@
 using CodingLanguages.Models.DB;
 using CodingLanguages.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
-// multilingual
 // newsletter
 
 namespace CodingLanguages.Controllers {
     public class UserController : Controller {
 
         private IRepositoryUsers _rep = new RepositoryUserDB();
+        private readonly IStringLocalizer<UserController> _stringLocalizer;
+        public UserController(IStringLocalizer<UserController> stringLocalizer)
+        {
+            _stringLocalizer = stringLocalizer;
+        }
 
         public IActionResult Index() {
             return View();
@@ -26,7 +32,7 @@ namespace CodingLanguages.Controllers {
             RegistrationViewModel rvm = new RegistrationViewModel();
             rvm.User = new Models.User();
             rvm.User.Birthdate = DateTime.Now;
-            rvm.Countries = getCountriesEN();
+            rvm.Countries = getCountries();
             return View(rvm);
         }
 
@@ -45,15 +51,15 @@ namespace CodingLanguages.Controllers {
 
                     if (await _rep.InsertAsync(userDataFromForm.User)) {
                         HttpContext.Session.SetString("name", userDataFromForm.User.Username);
-                        return View("_Message", new Message("Registrierung", "Hallo " + userDataFromForm.User.Username + "!\nSie haben sich erfolgreich registriert!"));
+                        return View("_Message", new Message(_stringLocalizer["reg"].Value, _stringLocalizer["hello"].Value + userDataFromForm.User.Username + "!\n" + _stringLocalizer["reg.s"].Value));
                     }
                     else {
-                        return View("_Message", new Message("Registrierung", "Registrierung fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                        return View("_Message", new Message(_stringLocalizer["reg"].Value, "Registrierung fehlgeschlagen", _stringLocalizer["later"].Value));
                     }
 
                 }
                 catch (DbException) {          // basisklasse datenbank-Exceptions
-                    return View("_Message", new Message("Registrierung", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message(_stringLocalizer["reg"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
                 }
                 finally {
@@ -61,7 +67,7 @@ namespace CodingLanguages.Controllers {
                 }
             }
 
-            userDataFromForm.Countries = getCountriesEN();
+            userDataFromForm.Countries = getCountries();
             return View(userDataFromForm);
         }
 
@@ -91,17 +97,17 @@ namespace CodingLanguages.Controllers {
                     {
                         HttpContext.Session.SetString("name", wholeUser.Username);
                         HttpContext.Session.SetInt32("admin", wholeUser.Admin);
-                        return View("_Message", new Message("Login", "Hallo " + wholeUser.Username + "! Sie haben sich erfolgreich eingeloggt!"));
+                        return View("_Message", new Message("Login", _stringLocalizer["hello"].Value + wholeUser.Username + "! " + _stringLocalizer["lin.s"].Value));
                     }
                     else
                     {
-                        return View("_Message", new Message("Login", "Login fehlgeschlagen", "Username / Email oder Password falsch!"));
+                        return View("_Message", new Message("Login", _stringLocalizer["lin.f"].Value, _stringLocalizer["lin.h"].Value));
                     }
 
                 }
                 catch (DbException)
                 {          // basisklasse datenbank-Exceptions
-                    return View("_Message", new Message("Login", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message("Login", _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
                 }
                 finally
@@ -115,7 +121,7 @@ namespace CodingLanguages.Controllers {
         public IActionResult Logout() {
             HttpContext.Session.SetString("name", "");
             HttpContext.Session.SetInt32("admin", 0);
-            return View("_Message", new Message("Logout", "Sie haben sich erfolgreich ausgeloggt!"));
+            return View("_Message", new Message("Logout", _stringLocalizer["lout"].Value));
         }
  
         public async Task<IActionResult> Profil() {
@@ -130,12 +136,12 @@ namespace CodingLanguages.Controllers {
                     return View(user);
                 }
                 else {
-                    return View("_Message", new Message("Profil", "Daten konnten nicht vom Server geladen werden", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message(_stringLocalizer["profil"].Value, _stringLocalizer["db.laden"].Value, _stringLocalizer["later"].Value));
                 }
 
             }
             catch (DbException) {          // basisklasse datenbank-Exceptions
-                return View("_Message", new Message("Profil", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                return View("_Message", new Message(_stringLocalizer["profil"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
             }
             finally {
@@ -154,19 +160,19 @@ namespace CodingLanguages.Controllers {
 
                 if (user != null) {
                     RegistrationViewModel rvm = new RegistrationViewModel();
-                    rvm.Countries = getCountriesEN();
+                    rvm.Countries = getCountries();
                     user.UsernameOld = user.Username;
                     user.EmailOld = user.Email;
                     rvm.User = user;
                     return View(rvm);
                 }
                 else {
-                    return View("_Message", new Message("Update", "Daten konnten nicht vom Server geladen werden", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message(_stringLocalizer["chpf"].Value, _stringLocalizer["db.laden"].Value, _stringLocalizer["later"].Value));
                 }
 
             }
             catch (DbException) {          // basisklasse datenbank-Exceptions
-                return View("_Message", new Message("Update", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                return View("_Message", new Message(_stringLocalizer["chpf"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
             }
             finally {
@@ -188,10 +194,10 @@ namespace CodingLanguages.Controllers {
                 User u = await _rep.LoginAsync(userDataFromForm.User.UsernameOld, userDataFromForm.User.Password);
                 
                 if(u == null) {
-                    ModelState.AddModelError("User.Password", "Falsches Passwort!");
+                    ModelState.AddModelError("User.Password", _stringLocalizer["pwd.false"].Value);
                 }
             } catch(DbException) {
-                return View("_Message", new Message("Update", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                return View("_Message", new Message(_stringLocalizer["chpf"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
             } finally {
                 await _rep.DisconnectAsync();
             }
@@ -202,15 +208,15 @@ namespace CodingLanguages.Controllers {
 
                     if (await _rep.UpdateAsync(userDataFromForm.User)) {
                         HttpContext.Session.SetString("name", userDataFromForm.User.Username);
-                        return View("_Message", new Message("Update", "User '" + userDataFromForm.User.Username + "' wurde erfolgreich upgedated!"));
+                        return View("_Message", new Message(_stringLocalizer["chpf"].Value, "User '" + userDataFromForm.User.Username + "' " + _stringLocalizer["update.succ"].Value));
                     }
                     else {
-                        return View("_Message", new Message("Update", "Update fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                        return View("_Message", new Message(_stringLocalizer["chpf"].Value, _stringLocalizer["update.fail"].Value, _stringLocalizer["later"].Value));
                     }
 
                 }
                 catch (DbException) {          // basisklasse datenbank-Exceptions
-                    return View("_Message", new Message("Update", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message(_stringLocalizer["chpf"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
                 }
                 finally {
@@ -218,7 +224,7 @@ namespace CodingLanguages.Controllers {
                 }
             }
 
-            userDataFromForm.Countries = getCountriesEN();
+            userDataFromForm.Countries = getCountries();
             return View(userDataFromForm);
         }
 
@@ -243,11 +249,11 @@ namespace CodingLanguages.Controllers {
                 User u = await _rep.LoginAsync(HttpContext.Session.GetString("name"), userDataFromForm.PasswordOld);
 
                 if (u == null) {
-                    ModelState.AddModelError("PasswordOld", "Falsches Passwort!");
+                    ModelState.AddModelError("PasswordOld", _stringLocalizer["pwd.false"].Value);
                 }
             }
             catch (DbException) {
-                return View("_Message", new Message("Password Change", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                return View("_Message", new Message(_stringLocalizer["chpwd"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
             }
             finally {
                 await _rep.DisconnectAsync();
@@ -258,15 +264,15 @@ namespace CodingLanguages.Controllers {
                     await _rep.ConnectAsync();
 
                     if (await _rep.SetPasswordAsync(HttpContext.Session.GetString("name"), userDataFromForm.Password)) {
-                        return View("_Message", new Message("Password Change", "Passwort erfolgreich geändert!"));
+                        return View("_Message", new Message(_stringLocalizer["chpwd"].Value, _stringLocalizer["chpwd.succ"].Value));
                     }
                     else {
-                        return View("_Message", new Message("Password Change", "Passwortänderung fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                        return View("_Message", new Message(_stringLocalizer["chpwd"].Value, _stringLocalizer["chpwd.fail"].Value, _stringLocalizer["later"].Value));
                     }
 
                 }
                 catch (DbException) {          // basisklasse datenbank-Exceptions
-                    return View("_Message", new Message("Password Change", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message(_stringLocalizer["chpwd"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
                 }
                 finally {
@@ -289,15 +295,15 @@ namespace CodingLanguages.Controllers {
                 if (await _rep.DeleteAsync(username)) {
                     HttpContext.Session.SetString("name", "");
                     HttpContext.Session.SetInt32("admin", 0);
-                    return View("_Message", new Message("Delete", "User '" + username + "' wurde erfolgreich gelöscht!"));
+                    return View("_Message", new Message(_stringLocalizer["del"].Value, "User '" + username + "'  " + _stringLocalizer["del.succ"].Value));
                 }
                 else {
-                    return View("_Message", new Message("Delete", "Delete fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message(_stringLocalizer["del"].Value, _stringLocalizer["del.fail"].Value, _stringLocalizer["later"].Value));
                 }
 
             }
             catch (DbException) {          // basisklasse datenbank-Exceptions
-                return View("_Message", new Message("Delete", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                return View("_Message", new Message(_stringLocalizer["del"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
             }
             finally {
@@ -310,7 +316,7 @@ namespace CodingLanguages.Controllers {
                 return RedirectToAction("Login");
 
             if (HttpContext.Session.GetInt32("admin") != 1 )
-                return View("_Message", new Message("Admin Area", "Fehlende Zugriffsberechtigung", "Bitte melden Sie sich als Admin an!"));
+                return View("_Message", new Message(_stringLocalizer["adm"].Value, _stringLocalizer["adm.auth"].Value, _stringLocalizer["adm.auth2"].Value));
 
             try
             {
@@ -323,13 +329,13 @@ namespace CodingLanguages.Controllers {
                 }
                 else
                 {
-                    return View("_Message", new Message("Admin Area", "Keine Daten vorhanden!", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message(_stringLocalizer["adm"].Value, _stringLocalizer["adm.data"].Value, _stringLocalizer["later"].Value));
                 }
 
             }
             catch (DbException)
             {          // basisklasse datenbank-Exceptions
-                return View("_Message", new Message("Admin Area", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                return View("_Message", new Message(_stringLocalizer["adm"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
             }
             finally
@@ -341,7 +347,7 @@ namespace CodingLanguages.Controllers {
         public async Task<IActionResult> DeleteAdmin(string id)
         {
             if(HttpContext.Session.GetInt32("admin") != 1)
-                return View("_Message", new Message("Admin Area", "Fehlende Zugriffsberechtigung", "Bitte melden Sie sich als Admin an!"));
+                return View("_Message", new Message(_stringLocalizer["adm"].Value, _stringLocalizer["adm.auth"].Value, _stringLocalizer["adm.auth2"].Value));
 
             if (HttpContext.Session.GetString("name") == id)
                 return RedirectToAction("Delete");
@@ -350,15 +356,15 @@ namespace CodingLanguages.Controllers {
                 await _rep.ConnectAsync();
 
                 if (await _rep.DeleteAsync(id)) {
-                    return View("_Message", new Message("Delete", "User '" + id + "' wurde erfolgreich gelöscht!"));
+                    return View("_Message", new Message(_stringLocalizer["del"].Value, "User '" + id + "' " + _stringLocalizer["del.succ"].Value));
                 }
                 else {
-                    return View("_Message", new Message("Delete", "Delete fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message(_stringLocalizer["del"].Value, _stringLocalizer["del.fail"].Value, _stringLocalizer["later"].Value));
                 }
 
             }
             catch (DbException) {          // basisklasse datenbank-Exceptions
-                return View("_Message", new Message("Delete", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                return View("_Message", new Message(_stringLocalizer["del"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
             }
             finally {
@@ -370,7 +376,7 @@ namespace CodingLanguages.Controllers {
         public async Task<IActionResult> UpdateAdmin(string id)
         {
             if (HttpContext.Session.GetInt32("admin") != 1)
-                return View("_Message", new Message("Admin Area", "Fehlende Zugriffsberechtigung", "Bitte melden Sie sich als Admin an!"));
+                return View("_Message", new Message(_stringLocalizer["adm"].Value, _stringLocalizer["adm.auth"].Value, _stringLocalizer["adm.auth2"].Value));
 
             try
             {
@@ -380,7 +386,7 @@ namespace CodingLanguages.Controllers {
                 if (user != null)
                 {
                     RegistrationViewModel rvm = new RegistrationViewModel();
-                    rvm.Countries = getCountriesEN();
+                    rvm.Countries = getCountries();
                     user.UsernameOld = user.Username;
                     user.EmailOld = user.Email;
                     rvm.User = user;
@@ -388,13 +394,13 @@ namespace CodingLanguages.Controllers {
                 }
                 else
                 {
-                    return View("_Message", new Message("Update", "Daten konnten nicht vom Server geladen werden", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message(_stringLocalizer["chpf"].Value, _stringLocalizer["db.laden"].Value, _stringLocalizer["later"].Value));
                 }
 
             }
             catch (DbException)
             {          // basisklasse datenbank-Exceptions
-                return View("_Message", new Message("Update", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                return View("_Message", new Message(_stringLocalizer["chpf"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
             }
             finally
@@ -417,17 +423,17 @@ namespace CodingLanguages.Controllers {
 
                     if (await _rep.UpdateAsync(userDataFromForm.User))
                     {
-                        return View("_Message", new Message("Update", "User '" + userDataFromForm.User.Username + "' wurde erfolgreich upgedated!"));
+                        return View("_Message", new Message(_stringLocalizer["chpf"].Value, "User '" + userDataFromForm.User.Username + "' " + _stringLocalizer["update.succ"].Value));
                     }
                     else
                     {
-                        return View("_Message", new Message("Update", "Update fehlgeschlagen", "Bitte probieren Sie es später erneut"));
+                        return View("_Message", new Message(_stringLocalizer["chpf"].Value, _stringLocalizer["update.fail"].Value, _stringLocalizer["later"].Value));
                     }
 
                 }
                 catch (DbException)
                 {          // basisklasse datenbank-Exceptions
-                    return View("_Message", new Message("Update", "Datenbank-Verbindungs-Fehler", "Bitte probieren Sie es später erneut"));
+                    return View("_Message", new Message(_stringLocalizer["chpf"].Value, _stringLocalizer["db.verb"].Value, _stringLocalizer["later"].Value));
 
                 }
                 finally
@@ -436,7 +442,7 @@ namespace CodingLanguages.Controllers {
                 }
             }
 
-            userDataFromForm.Countries = getCountriesEN();
+            userDataFromForm.Countries = getCountries();
             return View(userDataFromForm);
         }
 
@@ -444,7 +450,13 @@ namespace CodingLanguages.Controllers {
             return View();
         }
 
-        // mögl in db abspeichern, bzw als json downloaden
+        private List<String> getCountries()
+        {
+            if (HttpContext.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.Name == "de-DE")
+                return getCountriesDE();
+            return getCountriesEN();
+        }
+
         private List<String> getCountriesEN() {
             List<String> countries = new List<String> { "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic (CAR)", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of Americ", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe" };
             return countries;
@@ -461,32 +473,32 @@ namespace CodingLanguages.Controllers {
             }
 
             if (u.Username == null || u.Username.Trim().Length < 4 || u.Username.Trim().Length > 100) {
-                ModelState.AddModelError("User.Username", "Der Benutzername muss mind. 4  und max. 100 Zeichen lang sein.");
+                ModelState.AddModelError("User.Username", _stringLocalizer["un.v"].Value);
             } else if(u.Username.Contains('@'))
             {
-                ModelState.AddModelError("User.Username", "Der Benutzername darf kein @ enthalten.");
+                ModelState.AddModelError("User.Username", _stringLocalizer["un.v2"].Value);
             }
 
             if (u.Firstname == null || u.Firstname.Trim().Length < 4 || u.Firstname.Trim().Length > 100) {
-                ModelState.AddModelError("User.Firstname", "Der Vorname muss mind. 4 und max. 100 Zeichen lang sein.");
+                ModelState.AddModelError("User.Firstname", _stringLocalizer["fn.v"].Value);
             }
 
             if (u.Lastname == null || u.Lastname.Trim().Length < 4 || u.Lastname.Trim().Length > 100) {
-                ModelState.AddModelError("User.Lastname", "Der Nachname muss mind. 4 und max. 100 Zeichen lang sein.");
+                ModelState.AddModelError("User.Lastname", _stringLocalizer["ln.v"].Value);
             }
 
             if (u.Password == null || u.Password.Length < 8) {
-                ModelState.AddModelError("User.Password", "Das Passwort muss mind. 8 Zeichen lang sein.");
+                ModelState.AddModelError("User.Password", _stringLocalizer["pwd.v"].Value);
             } else if(u.CPassword == null || !u.CPassword.Equals(u.Password)) {
-                ModelState.AddModelError("User.CPassword", "Passwörter stimmen nicht überein.");
+                ModelState.AddModelError("User.CPassword", _stringLocalizer["cpwd.v"].Value);
             }
 
             if (u.Birthdate > DateTime.Now.AddYears(-12)) {
-                ModelState.AddModelError("User.Birthdate", "User müssen mindestens 12 Jahre alt sein.");
+                ModelState.AddModelError("User.Birthdate", _stringLocalizer["bd.v"].Value);
             }
 
             if (u.Email == null || !u.Email.Contains('@') || u.Email.Trim().Length < 8 || u.Email.Trim().Length > 100) {
-                ModelState.AddModelError("User.Email", "Es muss eine gültige Email-Addresse eingegeben werden, welche länger als 7 und kürzer als 100 Zeichen ist.");
+                ModelState.AddModelError("User.Email", _stringLocalizer["email.v"].Value);
             }
         }
 
@@ -496,10 +508,10 @@ namespace CodingLanguages.Controllers {
                 return;
 
             if (u.Username == null || u.Username.Trim().Length < 4 || u.Username.Trim().Length > 100)
-                ModelState.AddModelError("Username", "Benutzername oder Email muss min. 4 und max. 100 Zeichen enthalten.");
+                ModelState.AddModelError("Username", _stringLocalizer["login.v"].Value);
 
             if (u.Password == null || u.Password.Length < 8)
-                ModelState.AddModelError("Password", "Das Passwort muss mind. 8 Zeichen lang sein.");
+                ModelState.AddModelError("Password", _stringLocalizer["pwd.v"].Value);
         }
 
         private void ValidateUpdateData(User u) {
@@ -509,26 +521,26 @@ namespace CodingLanguages.Controllers {
             }
 
             if (u.Username == null || u.Username.Trim().Length < 4 || u.Username.Trim().Length > 100) {
-                ModelState.AddModelError("User.Username", "Der Benutzername muss mind. 4  und max. 100 Zeichen lang sein.");
+                ModelState.AddModelError("User.Username", _stringLocalizer["un.v"].Value);
             }
             else if (u.Username.Contains('@')) {
-                ModelState.AddModelError("User.Username", "Der Benutzername darf kein @ enthalten.");
+                ModelState.AddModelError("User.Username", _stringLocalizer["un.v2"].Value);
             }
 
             if (u.Firstname == null || u.Firstname.Trim().Length < 4 || u.Firstname.Trim().Length > 100) {
-                ModelState.AddModelError("User.Firstname", "Der Vorname muss mind. 4 und max. 100 Zeichen lang sein.");
+                ModelState.AddModelError("User.Firstname", _stringLocalizer["fn.v"].Value);
             }
 
             if (u.Lastname == null || u.Lastname.Trim().Length < 4 || u.Lastname.Trim().Length > 100) {
-                ModelState.AddModelError("User.Lastname", "Der Nachname muss mind. 4 und max. 100 Zeichen lang sein.");
+                ModelState.AddModelError("User.Lastname", _stringLocalizer["ln.v"].Value);
             }
 
             if (u.Birthdate > DateTime.Now.AddYears(-12)) {
-                ModelState.AddModelError("User.Birthdate", "User müssen mindestens 12 Jahre alt sein.");
+                ModelState.AddModelError("User.Birthdate", _stringLocalizer["bd.v"].Value);
             }
 
             if (u.Email == null || !u.Email.Contains('@') || u.Email.Trim().Length < 8 || u.Email.Trim().Length > 100) {
-                ModelState.AddModelError("User.Email", "Es muss eine gültige Email-Addresse eingegeben werden, welche länger als 7 und kürzer als 100 Zeichen ist.");
+                ModelState.AddModelError("User.Email", _stringLocalizer["email.v"].Value);
             }
         }
 
@@ -539,10 +551,10 @@ namespace CodingLanguages.Controllers {
             }
 
             if (u.Password == null || u.Password.Length < 8) {
-                ModelState.AddModelError("Password", "Das Passwort muss mind. 8 Zeichen lang sein.");
+                ModelState.AddModelError("Password", _stringLocalizer["pwd.v"].Value);
             }
             else if (u.CPassword == null || !u.CPassword.Equals(u.Password)) {
-                ModelState.AddModelError("CPassword", "Passwörter stimmen nicht überein.");
+                ModelState.AddModelError("CPassword", _stringLocalizer["cpwd.v"].Value);
             }
         }
 

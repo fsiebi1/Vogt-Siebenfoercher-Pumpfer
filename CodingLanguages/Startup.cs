@@ -9,11 +9,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,6 +37,27 @@ namespace CodingLanguages {
             services.AddSession();
 
             services.AddControllersWithViews();
+
+            services.AddLocalization(options =>
+            {
+                options.ResourcesPath = "Resources";
+            });
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new RequestCulture("en-US");
+
+                var cultures = new CultureInfo[]
+                {
+                    new CultureInfo("en-US"),
+                    new CultureInfo("de-DE")
+                };
+
+                options.SupportedCultures = cultures;
+                options.SupportedUICultures = cultures;
+
+                options.DefaultRequestCulture = new RequestCulture("de-DE");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +78,8 @@ namespace CodingLanguages {
             app.UseAuthorization();
 
             app.UseSession();
+
+            app.UseRequestLocalization();
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(

@@ -3,7 +3,12 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>Register</h1>
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<UserController> StringLocalizer
+
+<h1>@StringLocalizer["reg"]</h1>
 <br />
 
 <div class="form">

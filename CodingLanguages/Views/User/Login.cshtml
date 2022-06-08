@@ -4,20 +4,25 @@
     ViewData["Title"] = "Login";
 }
 
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<UserController> StringLocalizer
+
 <h1>Login</h1>
 <br />
 
 <div class="form">
     <form asp-controller="user" asp-action="login" method="post">
         <p>
-            <label asp-for="Username">Username or Email</label>
-            <input type="text" asp-for="Username" placeholder="Please enter your username or email">
+            <label asp-for="Username">@StringLocalizer["lin.u"]</label>
+            <input type="text" asp-for="Username" placeholder=@StringLocalizer["lin.up"]>
             <span asp-validation-for="Username"></span>
         </p>
 
         <p>
-            <label asp-for="Password">Password</label>
-            <input type="password" asp-for="Password" placeholder="Please enter your password">
+            <label asp-for="Password">@StringLocalizer["pwd"]</label>
+            <input type="password" asp-for="Password" placeholder=@StringLocalizer["lin.pwd.p"]>
             <span asp-validation-for="Password"></span>
         </p>
 

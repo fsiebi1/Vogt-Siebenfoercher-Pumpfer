@@ -3,37 +3,42 @@
     ViewData["Title"] = "Index";
 }
 
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<HomeController> StringLocalizer
+
 <link rel="stylesheet" href="~/css/talbe.css" />
 
 <h1>Java</h1>
 
 <div>
     <p class="paragrath">
-        Java ist eine besondere Programmiersprache, die sich an der Syntax der Programmiersprachen C und C++ anlehnt. Bei der Entwicklung von Java wurde von Beginn an genauestens darauf geachtet, dass bestimmte schwere Programmierfehler erst gar nicht auftreten können.
+        @StringLocalizer["java.p1"]
     </p>
     <p class="paragrath">
-        So gibt es in Java keine Pointer und somit kann der Programmierer nicht aus Versehen auf die falsche Speicheradresse zugreifen.
+        @StringLocalizer["java.p2"]
     </p>
     <p class="paragrath">
-        Unter den Programmierern wird Java als eine einfach zu erlernenden, objektorientierte, sichere und von der Rechnerarchitektur unabhängige Programmiersprache sehr geschätzt. In den letzten Jahren ist es den Entwicklern von Java gelungen die Programmiersprache immer leistungsfähiger zu machen.
+        @StringLocalizer["java.p3"]
     </p>
     <p class="paragrath">
-        Java ist eine sehr durchdachte und leichtgewichtige Programmiersprache, die aus gutem Grund auf bestimmte Funktionen von C++ verzichtet, wie beispielsweise Pointer, Mehrfachvererbung und Header-Dateien.
+        @StringLocalizer["java.p4"]
     </p>
     <p class="paragrath">
-        Stattdessen wurden viele anspruchsvolle Funktionen, wie Ausnahmenbehandlung, Nebenläufigkeit und grafische Benutzeroberfläche, in die Programmiersprache Java integriert.
+        @StringLocalizer["java.p5"]
     </p>
     <p class="paragrath">
-        In Java sind alle Eigenschaften moderner objektorientierter Programmiersprachen enthalten.<br /><br /><br />
+        @StringLocalizer["java.p6"]<br /><br /><br />
     </p>
     <table>
         <thead>
             <tr>
                 <td width="50%">
-                    Vorteile
+                    @StringLocalizer["adv"]
                 </td>
                 <td width="50%">
-                    Nachteile
+                    @StringLocalizer["dia"]
                 </td>
             </tr>
         </thead>
@@ -41,22 +46,22 @@
         <tbody>
             <tr>
                 <td>
-                    <u>Plattformunabhängigkeit:</u><br />
-                    Aufgrund von vorinstallierten Java-Tools, wird der Java-Quellcode vom Java-Compiler zuerst in einen Byte-Code übersetzt und erst dann von der Java Virtual Machine (JVM) interpretiert und als Maschinencode ausgeührt
+                    <u>@StringLocalizer["java.ad1h"]</u><br />
+                    @StringLocalizer["java.ad1"]
                 </td>
                 <td>
                     <u>Performance:</u><br />
-                    Jedoch ist dieser Vorteil auch zugleich ein riesiger Nachteil, denn durch diese Plattformunabhängigkeit entsteht ein erheblicher Performance- und Geschwindigkeitsverlust
+                    @StringLocalizer["java.ad2"]
                 </td>
             </tr>
             <tr>
                 <td>
-                    <u>Starker Community-Support:</u><br />
-                    Java erhält regelmäßig Updates, welche Aktualität, Stabilität und Flexibilität gewährleisten. Zusätzlich hat Java eine gigantische Auswahl an Bibliotheken und Frameworks, welche teilweise von der großen Community Javas erstellt und zur Verfügung gestellt wurden.
+                    <u>@StringLocalizer["java.ad3h"]</u><br />
+                    @StringLocalizer["java.ad3"]
                 </td>
                 <td>
-                    <u>Programmcodelänge:</u><br />
-                    Da Java einen sehr strikten typischen Porgrammierstil fordert, kann es dazu führen, dass der geschriebene Code länger werden kann las bei anderen Programmiersprachen und dadurch auch mehr Speicherplatz benötigt wird.
+                    <u>@StringLocalizer["java.ad4h"]</u><br />
+                    @StringLocalizer["java.ad4"]
                 </td>
             </tr>
         </tbody>

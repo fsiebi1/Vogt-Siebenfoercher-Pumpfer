@@ -3,23 +3,28 @@
     ViewData["Title"] = "Admin Area";
 }
 
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<UserController> StringLocalizer
+
 <link rel="stylesheet" href="~/css/table2.css" />
 
-<h1>AdminArea</h1>
+<h1>@StringLocalizer["adm"]</h1>
 
 <div class="form">
     <table>
         <thead>
             <tr>
-                <td colspan="6">Liste aller Benutzer</td>
+                <td colspan="6">@StringLocalizer["adm.list"]</td>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th>Username</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>E-Mail</th>
+                <th>@StringLocalizer["username"]</th>
+                <th>@StringLocalizer["firstname"]</th>
+                <th>@StringLocalizer["lastname"]</th>
+                <th>@StringLocalizer["email"]</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -47,7 +52,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="7">Benutzer bearbeiten</td>
+                <td colspan="7">@StringLocalizer["adm.edit"]</td>
             </tr>
         </tfoot>
     </table>
