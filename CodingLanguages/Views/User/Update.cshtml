@@ -3,5 +3,21 @@
     ViewData["Title"] = "Update";
 }
 
-<h1>Update</h1>
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
 
+@inject IStringLocalizer<UserController> StringLocalizer
+
+<h1>@StringLocalizer["chpf"]</h1>
+<br />
+
+<div class="form">
+    <form asp-controller="user" asp-action="update" method="post">
+
+        <partial name="UserForm" />
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/update.js" asp-append-version="true"></script>
+}

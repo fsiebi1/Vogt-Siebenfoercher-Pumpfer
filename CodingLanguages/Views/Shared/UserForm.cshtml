@@ -1,0 +1,109 @@
+﻿@model CodingLanguages.Models.ViewModels.RegistrationViewModel
+
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<UserController> StringLocalizer
+
+<input type="hidden" asp-for="User.UserID" />
+<input type="hidden" asp-for="User.Admin" />
+
+<input type="hidden" asp-for="User.UsernameOld" />
+<input type="hidden" asp-for="User.EmailOld" />
+
+<p>
+    <label asp-for="User.Username">@StringLocalizer["username"]</label>
+    <input type="text" asp-for="User.Username" placeholder=@StringLocalizer["uf.un.p"]>
+    <span asp-validation-for="User.Username"></span>
+    <span id="usernameMessage" style="display:none; color:red"> @StringLocalizer["uf.un.s"]</span>
+</p>
+
+<p>
+    <label asp-for="User.Firstname">@StringLocalizer["firstname"]</label>
+    <input type="text" asp-for="User.Firstname" placeholder=@StringLocalizer["uf.fn.p"]>
+    <span asp-validation-for="User.Firstname"></span>
+</p>
+
+<p>
+    <label asp-for="User.Lastname">@StringLocalizer["lastname"]</label>
+    <input type="text" asp-for="User.Lastname" placeholder=@StringLocalizer["uf.ln.p"]>
+    <span asp-validation-for="User.Lastname"></span>
+</p>
+
+<p>
+    <label asp-for="User.Email">@StringLocalizer["email"]</label>
+    <input type="email" asp-for="User.Email" placeholder=@StringLocalizer["uf.em.p"]>
+    <span asp-validation-for="User.Email"></span>
+    <span id="mailMessage" style="display:none; color:red"> @StringLocalizer["uf.em.s"]</span>
+</p>
+
+<p>
+    <label asp-for="User.Country">@StringLocalizer["uf.co"]</label>
+    <select asp-for="User.Country">
+        @if (Model != null && Model.Countries != null && Model.Countries.Count > 0)
+        {
+            @foreach (String str in Model.Countries)
+            {
+                @if (Model.User.Country != null)
+                {
+                    @if (str.Equals(Model.User.Country))
+                    {
+                        <option selected="selected" value=@str>@str</option>
+                    }
+                    else
+                    {
+                        <option value=@str>@str</option>
+                    }
+                }
+                else if (str.Equals("Austria") || str.Equals("Österreich"))
+                {
+                    <option selected="selected" value=@str>@str</option>
+                }
+                else
+                {
+                    <option value=@str>@str</option>
+                }
+            }
+        }
+        else
+        {
+            <option value="austria">Austria</option>
+            <option value="germany">Germany</option>
+            <option value="swiss">Swiss</option>
+        }
+
+    </select>
+    <span asp-validation-for="User.Country"></span>
+</p>
+
+<p>
+    <label asp-for="User.Gender">@StringLocalizer["gender"]</label><br />
+    <select asp-for="User.Gender">
+        <option value="2">@StringLocalizer["gen.di"]</option>
+        <option value="0">@StringLocalizer["gen.ma"]</option>
+        <option value="1">@StringLocalizer["gen.fm"]</option>
+    </select>
+    <span asp-validation-for="User.Gender"></span>
+</p>
+
+<p>
+    <label asp-for="User.Birthdate">@StringLocalizer["birthday"]</label> <br />
+    <input type="date" asp-for="User.Birthdate">
+    <span asp-validation-for="User.Birthdate"></span>
+</p>
+
+<p class="password">
+    <label asp-for="User.Password">@StringLocalizer["pwd"]</label>
+    <input type="password" asp-for="User.Password" placeholder=@StringLocalizer["uf.pwd.p"]>
+    <span asp-validation-for="User.Password"></span>
+</p>
+
+<p class="cpassword">
+    <label asp-for="User.CPassword">@StringLocalizer["cpwd"]</label>
+    <input type="password" asp-for="User.CPassword" placeholder=@StringLocalizer["uf.cpwd.p"]>
+    <span id="cpasswordMessage" style="display:none; color:red"> @StringLocalizer["uf.cpwd.s"]</span>
+</p>
+
+<p>
+    <input id="btnSubmit" type="submit" value=@StringLocalizer["sub"]>
+</p>

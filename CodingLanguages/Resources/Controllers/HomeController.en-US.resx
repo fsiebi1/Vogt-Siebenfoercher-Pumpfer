@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="aboutUs" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="adv" xml:space="preserve">
+    <value>Advantages</value>
+  </data>
+  <data name="dia" xml:space="preserve">
+    <value>Disadvantages</value>
+  </data>
+  <data name="index.h1" xml:space="preserve">
+    <value>Coding Languages</value>
+  </data>
+  <data name="index.java.adv" xml:space="preserve">
+    <value>platform independent, strong community support</value>
+  </data>
+  <data name="index.java.disadv" xml:space="preserve">
+    <value>considerably less performant than other programming languages</value>
+  </data>
+  <data name="index.lang" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="index.net.adv" xml:space="preserve">
+    <value>cross-platform, many libraries provided</value>
+  </data>
+  <data name="index.net.disadv" xml:space="preserve">
+    <value>Gap between release and stability</value>
+  </data>
+  <data name="index.object" xml:space="preserve">
+    <value>Object-oriented</value>
+  </data>
+  <data name="index.py.adv" xml:space="preserve">
+    <value>user-friendly, uncomplicated and fast</value>
+  </data>
+  <data name="index.py.disadv" xml:space="preserve">
+    <value>Design restrictions</value>
+  </data>
+  <data name="index.yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="java.ad1" xml:space="preserve">
+    <value>Due to pre-installed Java tools, the Java source code is first translated into byte code by the Java compiler and only then interpreted by the Java Virtual Machine (JVM) and executed as machine code.</value>
+  </data>
+  <data name="java.ad1h" xml:space="preserve">
+    <value>Platform independence:</value>
+  </data>
+  <data name="java.ad2" xml:space="preserve">
+    <value>However, this advantage is also a huge disadvantage at the same time, because this platform independence results in a significant loss of performance and speed</value>
+  </data>
+  <data name="java.ad3" xml:space="preserve">
+    <value>Java receives regular updates, which ensure up-to-dateness, stability and flexibility. In addition, Java has a gigantic selection of libraries and frameworks, some of which were created and made available by the large Java community.</value>
+  </data>
+  <data name="java.ad3h" xml:space="preserve">
+    <value>Strong community support:</value>
+  </data>
+  <data name="java.ad4" xml:space="preserve">
+    <value>Since Java requires a very strict typical programming style, it can lead to the fact that the written code can become longer read with other programming languages and thereby also more memory is needed.</value>
+  </data>
+  <data name="java.ad4h" xml:space="preserve">
+    <value>Program code length:</value>
+  </data>
+  <data name="java.p1" xml:space="preserve">
+    <value>Java is a special programming language, which is based on the syntax of the programming languages C and C++. During the development of Java, great care was taken from the beginning to ensure that certain serious programming errors could not occur in the first place.</value>
+  </data>
+  <data name="java.p2" xml:space="preserve">
+    <value>For example, there are no pointers in Java and thus the programmer cannot accidentally access the wrong memory address.</value>
+  </data>
+  <data name="java.p3" xml:space="preserve">
+    <value>Among programmers, Java is highly appreciated as an easy-to-learn, object-oriented, secure and computer architecture-independent programming language. In recent years, Java developers have succeeded in making the programming language more and more powerful.</value>
+  </data>
+  <data name="java.p4" xml:space="preserve">
+    <value>Java is a very well thought-out and lightweight programming language that does without certain features of C++, such as pointers, multiple inheritance and header files, for good reason.</value>
+  </data>
+  <data name="java.p5" xml:space="preserve">
+    <value>Instead, many sophisticated features, such as exception handling, concurrency, and graphical user interface, have been integrated into the Java programming language.</value>
+  </data>
+  <data name="java.p6" xml:space="preserve">
+    <value>Java contains all the features of modern object-oriented programming languages.</value>
+  </data>
+  <data name="net.ad1" xml:space="preserve">
+    <value>.NET is based on an object-oriented programming language. Object oriented programming is one of the best things to use .NET Framework. In .NET Framework, the object is divided into smaller blocks. This makes it easier for developers to work on one block at a time. This enables them to perform tasks effectively.</value>
+  </data>
+  <data name="net.ad1h" xml:space="preserve">
+    <value>Object-oriented software development model:</value>
+  </data>
+  <data name="net.ad2" xml:space="preserve">
+    <value>Updates are very frequent and are required for all products in the technology area. The problem occurs when updates do not show the previous version. When some changes are made to the database and design, the original version is not supported and works only in new versions.</value>
+  </data>
+  <data name="net.ad2h" xml:space="preserve">
+    <value>Limited object-relational support:</value>
+  </data>
+  <data name="net.ad3" xml:space="preserve">
+    <value>.NET has excellent development tools. These extremely useful tools facilitate deployment and maintenance. It is easy to troubleshoot. It provides the flexibility to disassemble applications, fix the problem and assemble.</value>
+  </data>
+  <data name="net.ad3h" xml:space="preserve">
+    <value>Flexible deployment and easy maintenance:</value>
+  </data>
+  <data name="net.ad4" xml:space="preserve">
+    <value>The .NET Framework is not known for providing new support and updates. When updates are made, support is lacking here. Some users describe that therefore often in release documents are included, which worked in a beta version but have errors in the published nVersion.</value>
+  </data>
+  <data name="net.ad4h" xml:space="preserve">
+    <value>Gap between release and stability:</value>
+  </data>
+  <data name="net.p1" xml:space="preserve">
+    <value>The .NET Framework is a software platform and runtime environment, with its own class libraries, interfaces and utilities, that supports different programming languages.</value>
+  </data>
+  <data name="net.p2" xml:space="preserve">
+    <value>The runtime environment CLR (Common Language Runtime) is a module for the cross-language management of code.</value>
+  </data>
+  <data name="net.p3" xml:space="preserve">
+    <value>Cross-language in this context means that the NET Framework was not designed for only one high-level language, but that programming languages such as C++, C#, J# or Visual Basic can be used for programming applications that are first translated into a common intermediate language CIL (Common Intermediate Language) before compiling.</value>
+  </data>
+  <data name="net.p4" xml:space="preserve">
+    <value>In the case of .NET programming of applications with the C++ programming language and the CLR runtime environment, there is also the fact that Microsoft extended the language scope of this programming language in a derived variant of C++, among other things to enable access to the .NET library.</value>
+  </data>
+  <data name="py.ad1" xml:space="preserve">
+    <value>Experts and beginners can easily understand the code and you can quickly become productive with this language, since it contains fewer dialects than other popular languages like Perl. Since its source code is similar to pseudocode, it is also easy to learn. Once you start learning, you can start coding practically immediately.</value>
+  </data>
+  <data name="py.ad1h" xml:space="preserve">
+    <value>Usability:</value>
+  </data>
+  <data name="py.ad2" xml:space="preserve">
+    <value>Even the biggest fans of Python would agree to certain design limitations in the language since it is written dynamically. This requires more testing and bugs to appear only during runtime. The language's global interpreter lock means that only one thread can access Python internals at a time.</value>
+  </data>
+  <data name="py.ad2h" xml:space="preserve">
+    <value>Desing restrictions:</value>
+  </data>
+  <data name="py.ad3" xml:space="preserve">
+    <value>The Python community provides users with fast and effective support. Hundreds of thousands of developers work hard to find and fix bugs and develop new patches and improvements for the language. This also provides quick feedback in many ways. For one, programmers can skip various tasks that would have to be performed in other languages.</value>
+  </data>
+  <data name="py.ad3h" xml:space="preserve">
+    <value>Uncomplicated and fast:</value>
+  </data>
+  <data name="py.ad4" xml:space="preserve">
+    <value>Python is strong on desktop and server platforms, but weak on mobile platforms. There have been only a handful of smartphone apps developed with Python, and the language is rarely found on the client side of web development applications. The language is also absent from web development browsers. This is because there is still a lack of a good secure sandbox language for it.</value>
+  </data>
+  <data name="py.ad4h" xml:space="preserve">
+    <value>Lack of mobile computers and browsers:</value>
+  </data>
+  <data name="py.c" xml:space="preserve">
+    <value>Copy Code</value>
+  </data>
+  <data name="py.p1" xml:space="preserve">
+    <value>Python is a programming language that is easy to learn and very versatile thanks to its clear syntax and simple readability. Python is freely available for the common operating systems. The usual programming paradigms such as object-oriented or functional programming are supported.</value>
+  </data>
+  <data name="py.p2" xml:space="preserve">
+    <value>Python is a programming language with a clear syntax and good readability. It is considered easy to learn and is interpretable in the most common operating systems. Python supports several paradigms of programming such as functional, object-oriented or aspect-oriented programming and can also be used as a scripting language.</value>
+  </data>
+  <data name="py.p3" xml:space="preserve">
+    <value>In principle, no development environment is necessary for Python, since Python code does not need to be compiled and scripts can be written with any text editor. Interpreters are interactive and allow experimenting with the possibilities of the language. Common editors used by programmers such as Emacs or Vim are adaptable for Python.</value>
+  </data>
+  <data name="py.p4" xml:space="preserve">
+    <value>Oft ist gemeinsam mit Python IDLE installiert. IDLE besteht aus einer Shell, einer Textumgebung und Debuggingfunktionen, stellt aber keine vollwertige Entwicklungsumgebung (IDE – Integrated Development Environment) dar.</value>
+  </data>
+  <data name="py.r" xml:space="preserve">
+    <value>Run Code</value>
+  </data>
+</root>

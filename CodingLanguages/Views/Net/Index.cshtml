@@ -3,29 +3,36 @@
     ViewData["Title"] = "Index";
 }
 
+@using CodingLanguages.Controllers
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<HomeController> StringLocalizer
+
+<link rel="stylesheet" href="~/css/talbe.css" />
+
 <h1>.NET Framework</h1>
 
 <div>
     <p class="paragrath">
-        Beim .NET Framework handelt es sich um eine Software-Plattform und Laufzeit­umgebung, mit eigenen Klassenbibliotheken, Schnittstellen und Dienst­pro­grammen, die unterschiedliche Programmiersprachen unterstützt.
+        @StringLocalizer["net.p1"]
     </p>
     <p class="paragrath">
-        Bei der Laufzeitumgebung CLR (Common Language Runtime) handelt es sich um ein Modul für die sprachübergreifende Verwaltung von Code.
+        @StringLocalizer["net.p2"]
     </p>
     <p class="paragrath">
-        Unter sprachübergreifend ist in diesem Zusammenhang zu verstehen, dass das NET Framework nicht nur für eine Hochsprache ausgelegt wurde, sondern das Programmiersprachen wie C++, C#, J# oder Visual Basic für die Programmierung von Anwendungen verwendet werden können, die vor dem Kompilieren zuerst in eine gemeinsame Zwischensprache CIL (Common Intermediate Language) übersetzt werden.
+        @StringLocalizer["net.p3"]
     </p>
     <p class="paragrath">
-        Bei der .NET-Programmierung von Anwendungen mit der Programmiersprache C++ und der Laufzeitumgebung CLR kommt hinzu, dass Microsoft in einer abgeleiteten Variante von C++ den Sprachumfang dieser Programmiersprache erweiterte, unter anderen um den Zugriff auf .NET Bibliothek zu ermöglichen.<br /><br /><br />
+        @StringLocalizer["net.p4"]<br /><br /><br />
     </p>
     <table>
         <thead>
             <tr>
                 <td width="50%">
-                    Vorteile
+                    @StringLocalizer["adv"]
                 </td>
                 <td width="50%">
-                    Nachteile
+                    @StringLocalizer["dia"]
                 </td>
             </tr>
         </thead>
@@ -33,22 +40,22 @@
         <tbody>
             <tr>
                 <td>
-                    <u>Objektorientiertes Softwareentwicklungsmodell:</u><br />
-                    .NET basiert auf einer objektorientierten Programmiersprache. Objektorientiertes Programmieren ist eines der besten Dinge zum Nutzen des .NET Frameworks. Im .NET Framework ist das Objekt in kleinere Blöcke unterteilt. Dies erleichtert Entwicklern die Arbeit an jeweils einem Block. Dadurch können sie Aufgaben effektiv ausführen.
+                    <u>@StringLocalizer["net.ad1h"]</u><br />
+                    @StringLocalizer["net.ad1"]
                 </td>
                 <td>
-                    <u>Eingeschränkter objektrelationaler Support:</u><br />
-                    Aktualisierungen sind sehr häufig und werden für alle Produkte des Technologiebereichs benötigt. Das Problem tritt auf, wenn bei Updates die vorherige Version nicht angezeigt wird. Wenn einige Änderungen an der Datenbank und am Design vorgenommen werden, wird die ursprüngliche Version nicht unterstützt und funktioniert nur in neuen Versionen.
+                    <u>@StringLocalizer["net.ad2h"]</u><br />
+                    @StringLocalizer["net.ad2"]
                 </td>
             </tr>
             <tr>
                 <td>
-                    <u>Flexible Bereitstellung und einfache Wartung:</u><br />
-                    .NET verfügt über hervorragende Entwicklungswerkzeuge. Diese äußerst nützlichen Tools erleichtern die Bereitstellung und Wartung. Es ist einfach, den Fehler zu beheben. Es bietet die Flexibilität, Anwendungen zu zerlegen, das Problem zu beheben und zusammenzustellen.
+                    <u>@StringLocalizer["net.ad3h"]</u><br />
+                    @StringLocalizer["net.ad3"]
                 </td>
                 <td>
-                    <u>Lücke zwischen Release und Stabilität:</u><br />
-                    Das .NET Framework ist nicht dafür bekannt, neuen Support und Updates bereitzustellen. Wenn Aktualisierungen vorgenommen werden, fehlt hier die Unterstützung. Einige Nutzer beschreiben, dass daher oftmals bei Release Dokumente enthalten sid, welche in einer Beta-Version funktionierten aber in der veröffentlichte nVersion Fehler aufweisen.
+                    <u>@StringLocalizer["net.ad4h"]</u><br />
+                    @StringLocalizer["net.ad4"]
                 </td>
             </tr>
         </tbody>

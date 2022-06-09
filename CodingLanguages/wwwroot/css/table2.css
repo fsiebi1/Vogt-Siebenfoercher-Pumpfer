@@ -1,0 +1,22 @@
+﻿table {
+    width: 100%;
+}
+
+tfoot {
+    font-size: 0.8em;
+    text-align: right;
+}
+
+thead {
+    font-weight: bold;
+    text-align: center;
+    color: crimson;
+}
+
+    thead td {
+        padding: 12px;
+    }
+
+td, th {
+    padding: 10px;
+}

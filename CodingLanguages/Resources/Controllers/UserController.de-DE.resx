@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="adm" xml:space="preserve">
+    <value>Admin Bereich</value>
+  </data>
+  <data name="adm.auth" xml:space="preserve">
+    <value>Fehlende Zugriffsberechtigung!</value>
+  </data>
+  <data name="adm.auth2" xml:space="preserve">
+    <value>Bitte melden Sie sich als Admin an!</value>
+  </data>
+  <data name="adm.data" xml:space="preserve">
+    <value>Keine Daten vorhanden!</value>
+  </data>
+  <data name="adm.edit" xml:space="preserve">
+    <value>Benutzer bearbeiten</value>
+  </data>
+  <data name="adm.list" xml:space="preserve">
+    <value>Liste aller Benutzer</value>
+  </data>
+  <data name="bd.v" xml:space="preserve">
+    <value>User müssen mindestens 12 Jahre alt sein.</value>
+  </data>
+  <data name="birthday" xml:space="preserve">
+    <value>Geburtsdatum</value>
+  </data>
+  <data name="chp.cp.p" xml:space="preserve">
+    <value>Neues Passwort bestätigen...</value>
+  </data>
+  <data name="chp.cp.s" xml:space="preserve">
+    <value>Die Passwörter stimmen nicht überein!</value>
+  </data>
+  <data name="chp.op" xml:space="preserve">
+    <value>Altes Passwort</value>
+  </data>
+  <data name="chp.op.p" xml:space="preserve">
+    <value>Ihr altes Passwort...</value>
+  </data>
+  <data name="chp.pw.p" xml:space="preserve">
+    <value>Ihr neues Passwort...</value>
+  </data>
+  <data name="chpf" xml:space="preserve">
+    <value>Profil_ändern</value>
+  </data>
+  <data name="chpwd" xml:space="preserve">
+    <value>Passwort_ändern</value>
+  </data>
+  <data name="chpwd.fail" xml:space="preserve">
+    <value>Passwortänderung fehlgeschlagen!</value>
+  </data>
+  <data name="chpwd.succ" xml:space="preserve">
+    <value>Passwort erfolgreich geändert!</value>
+  </data>
+  <data name="cpwd" xml:space="preserve">
+    <value>Passwort bestätigen</value>
+  </data>
+  <data name="cpwd.v" xml:space="preserve">
+    <value>Passwörter stimmen nicht überein.</value>
+  </data>
+  <data name="db.laden" xml:space="preserve">
+    <value>Daten konnten nicht vom Server geladen werden.</value>
+  </data>
+  <data name="db.verb" xml:space="preserve">
+    <value>Datenbank-Verbindungs-Fehler</value>
+  </data>
+  <data name="del" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="del.fail" xml:space="preserve">
+    <value>Löschen fehlgeschlagen!</value>
+  </data>
+  <data name="del.succ" xml:space="preserve">
+    <value>wurde erfolgreich gelöscht!</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="email.v" xml:space="preserve">
+    <value>Es muss eine gültige Email-Addresse eingegeben werden, welche länger als 7 und kürzer als 100 Zeichen ist.</value>
+  </data>
+  <data name="firstname" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="fn.v" xml:space="preserve">
+    <value>Der Vorname muss mind. 4 und max. 100 Zeichen lang sein.</value>
+  </data>
+  <data name="gen.di" xml:space="preserve">
+    <value>divers</value>
+  </data>
+  <data name="gen.fm" xml:space="preserve">
+    <value>weiblich</value>
+  </data>
+  <data name="gen.ma" xml:space="preserve">
+    <value>männlich</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Geschlecht</value>
+  </data>
+  <data name="hea.lang" xml:space="preserve">
+    <value>EN</value>
+  </data>
+  <data name="hello" xml:space="preserve">
+    <value>Hallo </value>
+  </data>
+  <data name="lastname" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="later" xml:space="preserve">
+    <value>Bitte versuchen Sie es später erneut.</value>
+  </data>
+  <data name="lin.f" xml:space="preserve">
+    <value>Login fehlgeschlagen!</value>
+  </data>
+  <data name="lin.h" xml:space="preserve">
+    <value>Username / Email oder Password falsch!</value>
+  </data>
+  <data name="lin.pwd.p" xml:space="preserve">
+    <value>Bitte geben Sie Ihr Passwort ein</value>
+  </data>
+  <data name="lin.s" xml:space="preserve">
+    <value>Sie haben sich erfolgreich eingeloggt!</value>
+  </data>
+  <data name="lin.u" xml:space="preserve">
+    <value>Benutzername oder E-Mail</value>
+  </data>
+  <data name="lin.up" xml:space="preserve">
+    <value>Bitte geben Sie Ihren Benutzernamen oder Ihre E-Mail Adresse ein</value>
+  </data>
+  <data name="ln.v" xml:space="preserve">
+    <value>Der Nachname muss mind. 4 und max. 100 Zeichen lang sein.</value>
+  </data>
+  <data name="login.v" xml:space="preserve">
+    <value>Benutzername oder Email muss min. 4 und max. 100 Zeichen enthalten.</value>
+  </data>
+  <data name="lout" xml:space="preserve">
+    <value>Sie haben sich erfolgreich ausgeloggt!</value>
+  </data>
+  <data name="mes.me" xml:space="preserve">
+    <value>Meldung</value>
+  </data>
+  <data name="mes.sol" xml:space="preserve">
+    <value>Lösung</value>
+  </data>
+  <data name="profil" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="pwd" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="pwd.false" xml:space="preserve">
+    <value>Falsches Passwort!</value>
+  </data>
+  <data name="pwd.v" xml:space="preserve">
+    <value>Das Passwort muss mind. 8 Zeichen lang sein.</value>
+  </data>
+  <data name="reg" xml:space="preserve">
+    <value>Registrierung</value>
+  </data>
+  <data name="reg.s" xml:space="preserve">
+    <value>Sie haben sich erfolgreich registriert!</value>
+  </data>
+  <data name="sub" xml:space="preserve">
+    <value>Ausführen</value>
+  </data>
+  <data name="uf.co" xml:space="preserve">
+    <value>Herkunftsland</value>
+  </data>
+  <data name="uf.cpwd.p" xml:space="preserve">
+    <value>Passwort bestätigen...</value>
+  </data>
+  <data name="uf.cpwd.s" xml:space="preserve">
+    <value>Die Passwörter stimmen nicht überein!</value>
+  </data>
+  <data name="uf.em.p" xml:space="preserve">
+    <value>Ihre E-Mail-Adresse</value>
+  </data>
+  <data name="uf.em.s" xml:space="preserve">
+    <value>Diese E-Mail-Adresse ist bereits vergeben!</value>
+  </data>
+  <data name="uf.fn.p" xml:space="preserve">
+    <value>Ihr Vorname...</value>
+  </data>
+  <data name="uf.ln.p" xml:space="preserve">
+    <value>Ihr Nachname</value>
+  </data>
+  <data name="uf.pwd.p" xml:space="preserve">
+    <value>Ihr Passwort...</value>
+  </data>
+  <data name="uf.un.p" xml:space="preserve">
+    <value>Ihr Benutzername...</value>
+  </data>
+  <data name="uf.un.s" xml:space="preserve">
+    <value>Der Benutzername ist bereits vergeben!</value>
+  </data>
+  <data name="un.v" xml:space="preserve">
+    <value>Der Benutzername muss mind. 4  und max. 100 Zeichen lang sein.</value>
+  </data>
+  <data name="un.v2" xml:space="preserve">
+    <value>Der Benutzername darf kein @ enthalten.</value>
+  </data>
+  <data name="update.fail" xml:space="preserve">
+    <value>Update fehlgeschlagen!</value>
+  </data>
+  <data name="update.succ" xml:space="preserve">
+    <value>wurde erfolgreich upgedated!</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>Benutzername</value>
+  </data>
+</root>

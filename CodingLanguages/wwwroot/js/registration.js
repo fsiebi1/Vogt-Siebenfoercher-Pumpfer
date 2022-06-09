@@ -85,6 +85,4 @@ $(document).ready(() => {
             $("#cpasswordMessage").css("display", "block");
         }
     });
-
-    $("#btnSubmit").prop("value", "Register");
 });

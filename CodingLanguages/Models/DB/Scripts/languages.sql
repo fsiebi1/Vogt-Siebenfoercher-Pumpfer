@@ -19,4 +19,6 @@ create table User(
 
 insert into user values(null, "hallo", "franz", "fritz", sha2("12345678", 512), "2004-05-03", "hallo@raeucher.info", "Austria", 1, 1);
 
+select * from user;
+
 -- email bestaetigen + newsletter einfuegen

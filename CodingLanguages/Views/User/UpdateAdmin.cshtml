@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "UpdateAdmin";
+}
+
+<h1>Update Admin</h1>
+<br />
+
+<div class="form">
+    <form asp-controller="user" asp-action="updateAdmin" method="post">
+
+        <partial name="UserForm" />
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/update.js" asp-append-version="true"></script>
+    <script src="~/js/updateAdmin.js" asp-append-version="true"></script>
+}
