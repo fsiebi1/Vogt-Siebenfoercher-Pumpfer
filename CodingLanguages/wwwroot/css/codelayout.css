@@ -15,12 +15,49 @@
 .container-fluid {
     z-index: 1000000 !important;
 }
+
+#compileButton {
+    display: flex;
+    position: absolute;
+    width: auto;
+    height: auto;
+}
+
 #playButton {
     display: flex;
     position: absolute;
     width: auto;
     height: auto;
 }
+
+#copyButton {
+    display: flex;
+    position: absolute;
+    margin: 0px 0px;
+    width: auto;
+    height: auto;
+}
+
+#editButton {
+    display: flex;
+    position: absolute;
+    margin: 0px 0px;
+    width: auto;
+    height: auto;
+}
+
+.circleA {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    margin: 100px 0px;
+    padding: 0;
+    background-color: #393636;
+    border-radius: 50%;
+    display: flex;
+    z-index: 10
+}
+
 .circle {
     position: absolute;
     height: 60px;
@@ -31,6 +68,78 @@
     border-radius: 50%;
     display: flex;
     z-index: 10
+}
+
+.circle2 {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    margin: 220px 0px;
+    padding: 0;
+    background-color: #393636;
+    border-radius: 50%;
+    display: flex;
+    z-index: 10
+}
+
+.circle3 {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    margin: 290px 0px;
+    padding: 0;
+    background-color: #393636;
+    border-radius: 50%;
+    display: flex;
+    z-index: 10
+}
+
+.placeHolder{
+    margin: 12px 12px;
+}
+
+.boxBase {
+    display: flex;
+    z-index: 10;
+    position: absolute;
+    margin: 234px 15px;
+    width: 26px;
+    height: 26px;
+    border-radius: 20%;
+    background: white;
+}
+
+.boxInner {
+    display: flex;
+    z-index: 10;
+    position: absolute;
+    margin: 236px 17px;
+    width: 22px;
+    height: 22px;
+    border-radius: 20%;
+    background: #393636;
+}
+
+.boxBase2 {
+    display: flex;
+    z-index: 10;
+    position: absolute;
+    margin: 240px 21px;
+    width: 26px;
+    height: 26px;
+    border-radius: 20%;
+    background: white;
+}
+
+.boxInner2 {
+    display: flex;
+    z-index: 10;
+    position: absolute;
+    margin: 242px 23px;
+    width: 22px;
+    height: 22px;
+    border-radius: 20%;
+    background: #393636;
 }
 
 .arrowRightOuter {
@@ -71,6 +180,7 @@ pre{
 }
 
 code{
+    display: inline-block;
     font-size: 20px;
     align-content: center;
     border: none;
